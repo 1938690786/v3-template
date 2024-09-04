@@ -11,6 +11,7 @@
     "lint:error": "eslint --fix --quiet \"src/**/*.{js,vue,ts}\""
   },
   "dependencies": {
+    "vant": "^4.9.4",
     "vue": "^3.4.37"
   },
   "devDependencies": {
