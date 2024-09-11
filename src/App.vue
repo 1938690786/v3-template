@@ -13,11 +13,25 @@ const { routeTransitionName } = storeToRefs(routeTransitionNameStore)
 const keepAliveRouteNames = computed(() => {
   return useRouteCache().routeCaches as string[]
 })
+
+/** 监听浏览器后退事件 */
+function handleListenBack(): void {
+  window.addEventListener(
+    'popstate',
+    () => {
+      console.log(879879)
+      routeTransitionNameStore.setName('slide-left')
+      routeTransitionNameStore.setBack(true)
+    },
+    false,
+  )
+}
+handleListenBack()
 </script>
 
 <template>
   <VanConfigProvider :theme="mode">
-    <!-- <NavBar /> -->
+    <NavBar />
     <router-view v-slot="{ Component, route }">
       <transition :name="routeTransitionName">
         <keep-alive :include="keepAliveRouteNames">

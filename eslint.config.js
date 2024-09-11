@@ -25,6 +25,7 @@ export default antfu({
   },
   rules: {
     'no-console': 'off',
+    'no-new': 'off'
   },
 
   ignores: [

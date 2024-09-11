@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
-import './style.css'
+import VConsole from 'vconsole'
+import './styles/index.css'
 import App from './App.vue'
 import 'virtual:uno.css'
+import { useEnv } from './hooks/useEnv'
 import pinia from '@/config/pinia'
 import router from '@/packages/vue-router/index'
 
@@ -16,9 +18,15 @@ import 'vant/es/dialog/style'
 import 'vant/es/notify/style'
 import 'vant/es/image-preview/style'
 
+if (!useEnv('production')) {
+    new VConsole()
+  }
+
 const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
 
 app.mount('#app')
+
+

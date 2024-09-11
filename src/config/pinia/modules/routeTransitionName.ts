@@ -7,9 +7,17 @@ const useRouteTransitionNameStore = defineStore('route-transition-name', () => {
     routeTransitionName.value = name
   }
 
+  const isBack = ref<any>(null)
+  const setBack = (val: boolean | null) => {
+    isBack.value = val
+  }
+
   return {
     routeTransitionName,
     setName,
+
+    isBack,
+    setBack,
   }
 })
 

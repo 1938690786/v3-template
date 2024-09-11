@@ -1,10 +1,13 @@
 <script lang='ts' setup>
+defineOptions({
+  name: 'KeepAlive',
+})
+
+const value = ref(0)
 </script>
 
 <template>
-  <router-link to="/dev">
-    开发者工具
-  </router-link>
+  <van-stepper v-model="value" />
 </template>
 
 <style scoped lang='scss'>
