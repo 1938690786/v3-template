@@ -4,18 +4,23 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "dev": "vite --mode development",
+    "build": "npm run build:prod",
+    "build:test": "vite build --mode test",
+    "build:prod": "vue-tsc -b && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint --fix \"src/**/*.{js,vue,ts}\"",
     "lint:error": "eslint --fix --quiet \"src/**/*.{js,vue,ts}\""
   },
   "dependencies": {
+    "pinia": "^2.2.2",
+    "pinia-plugin-persistedstate": "^4.0.1",
     "vant": "^4.9.4",
     "vue": "^3.4.37"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
+    "@types/node": "^22.5.4",
     "@vitejs/plugin-vue": "^5.1.2",
     "eslint": "^9.9.1",
     "eslint-define-config": "^2.1.0",
