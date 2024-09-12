@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import useAppStore from '@/config/pinia/modules/app'
-import useRouteTransitionNameStore from '@/config/pinia/modules/routeTransitionName'
+import useApp from '@/config/pinia/modules/app'
 import useRouteCache from '@/config/pinia/modules/routeCache'
 
-const appStore = useAppStore()
-const { mode } = storeToRefs(appStore)
-
-const routeTransitionNameStore = useRouteTransitionNameStore()
-const { routeTransitionName } = storeToRefs(routeTransitionNameStore)
+const app = useApp()
+const { routeTransitionName } = storeToRefs(app)
+const { mode } = storeToRefs(app)
 
 const keepAliveRouteNames = computed(() => {
   return useRouteCache().routeCaches as string[]
@@ -19,8 +16,8 @@ function handleListenBack(): void {
   window.addEventListener(
     'popstate',
     () => {
-      console.log("popstate1")
-      routeTransitionNameStore.setBack(true)
+      console.log('popstate')
+      app.setBack(true)
     },
     false,
   )

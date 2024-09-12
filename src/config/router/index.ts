@@ -1,4 +1,6 @@
-const routers = [
+import type { RouteConfig } from 'types'
+
+const routers: RouteConfig[] = [
   {
     path: '/',
     meta: {

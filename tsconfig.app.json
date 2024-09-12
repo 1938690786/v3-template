@@ -13,6 +13,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "typeRoots": ["./node_modules/@types/", "./types"],
     "allowImportingTsExtensions": true,
 
     /* Linting */
@@ -24,5 +25,13 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "types/**/*.d.ts",
+    "types/**/*.ts"
+  ]
 }

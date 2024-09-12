@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 import useRouteCache from '@/config/pinia/modules/routeCache'
-import useRouteTransitionNameStore from '@/config/pinia/modules/routeTransitionName'
+import useApp from '@/config/pinia/modules/app'
+import useSleep from '@/hooks/useSleep'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -11,31 +12,27 @@ const router = createRouter({
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
   useRouteCache().addRoute(to)
-  console.log(1111111111)
-  const isBack = useRouteTransitionNameStore().isBack;
+  const app = useApp()
+  const isBack = app.isBack
   if (isBack === null || (to.meta?.isTab && from.meta?.isTab)) {
     /** 页面初始化，tab切换的时候，不显示动画 */
-    useRouteTransitionNameStore().setName('absolute-layout')
-    useRouteTransitionNameStore().setBack(false)
-  } else if (isBack === true) {
-    /** 执行返回操作 */
-    console.log(2323232332)
-    useRouteTransitionNameStore().setName('slide-left')
-    useRouteTransitionNameStore().setBack(false)
-  } else {
-    console.log(7867867789)
-
-
-
-
-    
-    
-    /** 执行前进操作 */
-    useRouteTransitionNameStore().setName('slide-right')
+    app.setName('absolute-layout')
+    app.setBack(false)
   }
+  else if (isBack === true) {
+    /** 执行返回操作 */
+    app.setName('slide-right')
+    app.setBack(false)
+  }
+  else {
+    /** 执行前进操作 */
+    app.setName('slide-left')
+  }
+  await useSleep(30)
   next()
 })
 
-router.afterEach((to) => {})
+router.afterEach((to) => {
+})
 
 export default router
