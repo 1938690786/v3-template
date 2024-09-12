@@ -19,8 +19,7 @@ function handleListenBack(): void {
   window.addEventListener(
     'popstate',
     () => {
-      console.log(879879)
-      routeTransitionNameStore.setName('slide-left')
+      console.log("popstate1")
       routeTransitionNameStore.setBack(true)
     },
     false,

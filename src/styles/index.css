@@ -19,14 +19,21 @@ body {
   text-size-adjust: 100% !important; /** IOS禁止微信调整字体大小 */
 }
 
+#app {
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition:
-    opacity 0.3s,
-    transform 0.4s,
-    -webkit-transform 0.4s;
+    opacity 0.2s,
+    transform 0.3s,
+    -webkit-transform 0.3s;
   position: absolute;
   left: 0;
   width: 100%;
