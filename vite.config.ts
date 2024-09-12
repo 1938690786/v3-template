@@ -5,6 +5,7 @@ import UnoCSS from 'unocss/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import viewport from 'postcss-mobile-forever'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,6 +14,22 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
       'types': path.resolve(__dirname, 'types'),
+    },
+  },
+  css: {
+    postcss: {
+      plugins: [
+        // https://github.com/wswmsword/postcss-mobile-forever
+        viewport({
+          appSelector: '#app',
+          viewportWidth: 375,
+          maxDisplayWidth: 600,
+          rootContainingBlockSelectorList: [
+            'van-tabbar',
+            'van-popup',
+          ],
+        }),
+      ],
     },
   },
   plugins: [

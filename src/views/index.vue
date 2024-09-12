@@ -3,9 +3,8 @@
 
 <template>
   <router-link to="/dev">
-    开发者工具
+    <div class="text-16">
+      开发者工具
+    </div>
   </router-link>
 </template>
-
-<style scoped lang='scss'>
-</style>

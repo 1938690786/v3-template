@@ -7,11 +7,11 @@ function jump(name: string) {
 </script>
 
 <template>
-  <div class="px-4 py-4">
+  <div class="px-16 py-16">
     <h1> 开发者工具 </h1>
     <section>
       <h3>基础组件</h3>
-      <div class="h-12 w-full rounded-6 bg-gray-200 px-4 leading-12" @click="jump('KeepAlive')">
+      <div class="h-48 w-full rounded-24 bg-gray-200 px-24 leading-48" @click="jump('KeepAlive')">
         keep-alive
       </div>
     </section>

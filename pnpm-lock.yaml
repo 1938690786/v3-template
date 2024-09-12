@@ -33,6 +33,9 @@ importers:
       '@unocss/eslint-plugin':
         specifier: 0.62.2
         version: 0.62.2(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
+      '@unocss/preset-rem-to-px':
+        specifier: ^0.62.3
+        version: 0.62.3
       '@vitejs/plugin-vue':
         specifier: ^5.1.2
         version: 5.1.3(vite@5.4.3(@types/node@22.5.4))(vue@3.5.0(typescript@5.5.4))
@@ -48,6 +51,9 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.28.0
         version: 9.28.0(eslint@9.9.1(jiti@1.21.6))
+      postcss-mobile-forever:
+        specifier: ^4.1.6
+        version: 4.1.6(postcss@8.4.44)
       typescript:
         specifier: ^5.5.3
         version: 5.5.4
@@ -906,6 +912,9 @@ packages:
 
   '@unocss/preset-mini@0.62.3':
     resolution: {integrity: sha512-dn/8ubeW2ry/ZF3iKxdQHnS0l3EBibt0rIOE/XVwx24ub6pRzclU4r7xHnXeqvAFOO9PoiKDGgFR92m6R2MxyQ==}
+
+  '@unocss/preset-rem-to-px@0.62.3':
+    resolution: {integrity: sha512-kZrTIey0rnvv1Do69AdMcRsekAXDJkgpp9nTSW/zV5A5qp/gMiMqmqjLeHUY3P4btAGoGn6efUPgNZ+gZBi6mg==}
 
   '@unocss/preset-tagify@0.62.3':
     resolution: {integrity: sha512-8BpUCZ5sjOZOzBKtu7ecfhRggwwPF78IqeqeNjI+XYRs8r7TBBcUVeF6zUkwhlX/TbtREkw2OZj0Iusa9CBO+A==}
@@ -2104,6 +2113,11 @@ packages:
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+
+  postcss-mobile-forever@4.1.6:
+    resolution: {integrity: sha512-ITf1YWFLMDGG6GXPY9bTUS9643SLEgrTitrjHrMTkFmCoDTJsBzKzphYFFxmDTXzN2ceVfxVB541KFx4IwBSKA==}
+    peerDependencies:
+      postcss: ^8.0.0
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -3454,6 +3468,10 @@ snapshots:
       '@unocss/extractor-arbitrary-variants': 0.62.3
       '@unocss/rule-utils': 0.62.3
 
+  '@unocss/preset-rem-to-px@0.62.3':
+    dependencies:
+      '@unocss/core': 0.62.3
+
   '@unocss/preset-tagify@0.62.3':
     dependencies:
       '@unocss/core': 0.62.3
@@ -4756,6 +4774,10 @@ snapshots:
       pathe: 1.1.2
 
   pluralize@8.0.0: {}
+
+  postcss-mobile-forever@4.1.6(postcss@8.4.44):
+    dependencies:
+      postcss: 8.4.44
 
   postcss-selector-parser@6.1.2:
     dependencies:
