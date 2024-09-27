@@ -16,7 +16,6 @@ function handleListenBack(): void {
   window.addEventListener(
     'popstate',
     () => {
-      console.log('popstate')
       app.setBack(true)
     },
     false,

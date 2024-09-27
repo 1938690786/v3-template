@@ -19,6 +19,16 @@ body {
   text-size-adjust: 100% !important; /** IOS禁止微信调整字体大小 */
 }
 
+html {
+  background: var(--van-gray-1);
+  color-scheme: light;
+}
+
+html.dark {
+  background: #222;
+  color-scheme: dark;
+}
+
 #app {
   height: 100vh;
   height: 100dvh;
