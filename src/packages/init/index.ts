@@ -1,3 +1,4 @@
+import type { _TouchEvent } from 'types'
 import useRouteTransitionNameStore from '@/config/pinia/modules/routeTransitionName'
 
 const routeTransitionNameStore = useRouteTransitionNameStore()
@@ -7,7 +8,6 @@ function handleListenBack(): void {
   window.addEventListener(
     'popstate',
     () => {
-      console.log(879879)
       routeTransitionNameStore.setName('slide-left')
       routeTransitionNameStore.setBack(true)
     },

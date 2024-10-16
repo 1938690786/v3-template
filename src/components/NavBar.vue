@@ -10,10 +10,10 @@ function onBack() {
 }
 
 const title = computed(() => {
-  if (!route.meta)
+  if (!route.meta) {
     return ''
-
-  return route.meta.title || ''
+  }
+  return route.meta.title as string || ''
 })
 
 const showLeftArrow = computed(() => {

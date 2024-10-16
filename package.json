@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
+    "@types/big.js": "^6.2.2",
     "@types/node": "^22.5.4",
     "@unocss/eslint-plugin": "0.62.2",
     "@unocss/preset-rem-to-px": "^0.62.3",

@@ -2,9 +2,7 @@
 </script>
 
 <template>
-  <router-link to="/dev">
-    <div class="text-16">
-      开发者工具
-    </div>
-  </router-link>
+  <van-cell-group>
+    <van-cell title="开发者工具" is-link to="/dev" value="" />
+  </van-cell-group>
 </template>

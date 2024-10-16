@@ -13,3 +13,7 @@ interface RouteConfig {
   }
   component?: any
 }
+
+type _TouchEvent = TouchEvent & {
+  _isScroller?: boolean
+}
