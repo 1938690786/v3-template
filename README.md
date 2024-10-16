@@ -1,5 +1,7 @@
-# Vue 3 + TypeScript + Vite + Vue Router + Pinia
+# h5 项目基础框架
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 技术栈
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Vue 3 + TypeScript + Vite + Vue Router + Pinia + vant4 + unocss
+
+项目配置了 h5 开发的基础内容，技术栈采用插件都是目前最新版本，欢迎使用交流。
