@@ -1,6 +1,9 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  button button
+  <el-button type="primary">
+    Primary
+  </el-button>
 </template>
