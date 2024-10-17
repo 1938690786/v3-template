@@ -1,3 +1,4 @@
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
@@ -6,6 +7,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      'types': path.resolve(__dirname, 'types'),
+    },
+  },
   plugins: [
     vue(),
     Components({
