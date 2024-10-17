@@ -1,15 +1,12 @@
-# vue项目模板，计划打造h5+后管开箱即用项目
-
-### h5 模板
-
-```
-分支: h5-vant4
-Vue 3 + TypeScript + Vite + Vue Router + Pinia + vant4 + unocss
-
-项目配置了 h5 开发的基础内容，技术栈采用插件都是目前最新版本。
-
-```
-
-### 后管模板
-
-打造中...
+- [ ] ui 框架 Element Plus
+- [ ] 状态管理 pinia
+- [ ] 404页面
+- [ ] 登录页面
+- [ ] 路由配置
+- [ ] 侧边栏
+- [] 顶部导航
+- [] form表单
+- [] 表格组件
+- [] sass支持
+- [] keepalive 支持
+- [] 请求 axios
