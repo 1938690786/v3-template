@@ -1,12 +1,13 @@
-- [ ] ui 框架 Element Plus
-- [ ] 状态管理 pinia
-- [ ] 404页面
-- [ ] 登录页面
-- [ ] 路由配置
-- [ ] 侧边栏
-- [] 顶部导航
-- [] form表单
-- [] 表格组件
-- [] sass支持
-- [] keepalive 支持
-- [] 请求 axios
+-   [x] ui 框架 Element Plus
+-   [x] 状态管理 pinia
+-   [x] 404页面
+-   [ ] 登录页面
+-   [x] 路由配置
+-   [x] 侧边栏
+-   [ ] 顶部导航
+-   [ ] form表单
+-   [ ] 表格组件
+-   [ ] sass支持
+-   [ ] keepalive 支持
+-   [ ] 请求 axios
+-   [x] svg图标

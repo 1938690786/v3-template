@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    index
+    dev
 </template>
 
 <style scoped lang='scss'>

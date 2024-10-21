@@ -5,6 +5,7 @@ import './style.css'
 import App from './App.vue'
 import pinia from '@/config/pinia'
 import router from '@/packages/vue-router/index'
+import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 

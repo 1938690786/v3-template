@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    index
+    form
 </template>
 
 <style scoped lang='scss'>

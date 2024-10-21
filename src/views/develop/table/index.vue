@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    index
+    table
 </template>
 
 <style scoped lang='scss'>

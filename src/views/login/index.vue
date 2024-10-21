@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    index
+    login
 </template>
 
 <style scoped lang='scss'>
