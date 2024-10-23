@@ -2,7 +2,14 @@
 </script>
 
 <template>
-    <div class="header" />
+    <div class="header">
+        <div class="left">
+            <el-icon size="30">
+                <ElementPlus />
+            </el-icon>
+        </div>
+        <div class="right" />
+    </div>
 </template>
 
 <style scoped lang='scss'>
@@ -14,5 +21,14 @@
     line-height: 56px;
     background-color: #001529;
     box-shadow: 0 2px 8px #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left {
+        color: #fff;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+    }
 }
 </style>
