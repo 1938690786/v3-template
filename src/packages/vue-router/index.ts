@@ -21,7 +21,9 @@ router.afterEach((to) => {
 
 export const SIDER_ROUTES = (() => {
     const FILTER_PATH = ['/login', '/:pathMatch(.*)*']
-    return router.options.routes.filter(item => !FILTER_PATH.includes(item.path))
+    return router.options.routes.filter(item => !FILTER_PATH.includes(item.path)).sort((a: any, b: any) => {
+        return a?.sort - b?.sort
+    })
 })()
 
 export default router
