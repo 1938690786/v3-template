@@ -462,7 +462,7 @@ export class FrameListViewFilterItem {
         this.other = other
         this.if = enable
         this.clearable = clearable
-        this.placeholder = placeholder
+        this.placeholder = placeholder || '请输入'
         this.pickerOptions = pickerOptions
         this.collapseTags = collapseTags
     }

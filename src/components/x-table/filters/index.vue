@@ -1,17 +1,44 @@
 <script lang='ts' setup>
+import FilterItem from './item.vue'
+
 defineProps({
     // 表格筛选项
     filters: { type: Array, default: () => [] },
 })
+
+const emits = defineEmits(['search', 'reset'])
+
+const model = defineModel<any>({ default: {} })
+
+// 查询
+function search() {
+    emits('search')
+}
+
+// 重置
+function reset() {
+    model.value = {}
+    emits('search')
+}
 </script>
 
 <template>
     <div class="x-table-filters">
-        <el-row :gutter="10">
-            <el-col v-for="item of 10" :key="item" :lg="6" :span="8">
-                <div class="grid-content" />
-            </el-col>
-        </el-row>
+        <div class="filter-container">
+            <!-- <el-row :gutter="20">
+                <el-col  :lg="6" :span="8"> -->
+            <template v-for="item of filters" :key="item">
+                <FilterItem v-model="model[item.code]" :item="item" />
+            </template>
+            <el-button class="btn" type="primary" style="margin-left: 12px" @click="search">
+                查询
+            </el-button>
+            <el-button class="btn" @click="reset">
+                重置
+            </el-button>
+            <!-- </el-col>
+            </el-row> -->
+        </div>
     </div>
 </template>
 
@@ -19,10 +46,18 @@ defineProps({
 .x-table-filters {
     width: 100%;
     background: #fff;
-    .grid-content {
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 15px;
+    .filter-container {
         width: 100%;
-        height: 50px;
-        background: pink;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .btn {
+        margin-bottom: 20px;
     }
 }
 </style>

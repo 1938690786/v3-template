@@ -13,6 +13,5 @@
     height: 100%;
     background: #f6f7fc;
     overflow-x: hidden;
-    border: solid 1px red;
 }
 </style>
