@@ -4,7 +4,8 @@ const emits = defineEmits(['change'])
 const model: any = defineModel<{
     total: number
     filterData: Record<string, any>
-    selected: Record<string, any>[]
+    selected: any[]
+    tabData: ''
     pageData: {
         page: number
         size: number
