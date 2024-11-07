@@ -1,14 +1,21 @@
 <script lang='ts' setup>
 import FilterItem from './item.vue'
 
-defineProps({
+const props = defineProps({
     // 表格筛选项
-    filters: { type: Array, default: () => [] },
+    filters: { type: Array<any>, default: () => [] },
 })
 
 const emits = defineEmits(['search', 'reset'])
 
 const model = defineModel<any>({ default: {} })
+
+const filtersSlot = computed(() => {
+    const result = props.filters.filter((item: any) => {
+        return item.type === 'slot'
+    }).map((item: any) => item.code)
+    return result
+})
 
 // 查询
 function search() {
@@ -28,7 +35,11 @@ function reset() {
             <!-- <el-row :gutter="20">
                 <el-col  :lg="6" :span="8"> -->
             <template v-for="item of filters" :key="item">
-                <FilterItem v-model="model[item.code]" :item="item" />
+                <FilterItem v-if="item.show" v-model="model[item.code]" :item="item">
+                    <template v-for="slot of filtersSlot" #[slot]>
+                        <slot :name="slot" />
+                    </template>
+                </FilterItem>
             </template>
             <el-button class="btn" type="primary" style="margin-left: 12px" @click="search">
                 查询

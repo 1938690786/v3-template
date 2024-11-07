@@ -11,7 +11,11 @@ interface Column {
     sort?: boolean
     align?: 'left' | 'right' | 'center'
 }
-defineProps({
+const props = defineProps({
+    // 请求方法
+    request: Function,
+    // 表格数据
+    listData: { type: Array, default: () => [] },
     // 表格筛选项
     filters: { type: Array, default: () => [] },
     // 表格列
@@ -29,30 +33,55 @@ defineProps({
 })
 
 const model: any = defineModel<{
-    req: [undefined, () => Promise<any>]
-    params: Record<string, any>
     total: number
+    filterData: Record<string, any>
     selected: Record<string, any>[]
-    pagination: boolean
-    pageKey: string
-    sizeKey: string
-    rowKey: string
+    pageData: {
+        page: number
+        size: number
+    }
 }>()
 
-const datas = ref<Record<string, any>[]>([])
+const loading = ref(false)
+
+const filtersSlot = computed(() => {
+    const result = props.filters.filter((item: any) => {
+        return item.type === 'slot'
+    }).map((item: any) => item.code)
+    return result
+})
 
 function getData() {
-    console.log(11)
+    if (typeof props.request === 'function') {
+        try {
+            loading.value = true
+            props.request().then().finally(() => {
+                loading.value = false
+            })
+        }
+        catch (err) {
+            console.log('repuset error====>', err)
+            console.error('the bind value request must be "false" or a function returns Promise')
+        }
+    }
 }
+
+onMounted(() => {
+    getData()
+})
 </script>
 
 <template>
     <div class="x-table">
         <div class="filters">
-            <Filters v-if="filters && filters.length" v-model="model.params" :filters="filters" :get-data="getData" />
+            <Filters v-if="filters && filters.length" v-model="model.filterData" :filters="filters" @search="getData">
+                <template v-for="item of filtersSlot" #[item]>
+                    <slot :name="item" />
+                </template>
+            </Filters>
         </div>
-        <div class="table-data">
-            <TableData v-model="datas" :columns="columns" />
+        <div v-loading="loading" class="table-data">
+            <TableData v-bind="{ listData, columns }" />
         </div>
         <div class="pagination">
             <Pagination />
@@ -64,20 +93,18 @@ function getData() {
 .x-table {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-    border: solid 1px pink;
     position: relative;
     .table-data {
         flex: 1;
+        overflow-y: auto;
+        margin-bottom: 15px;
     }
     .pagination {
         width: 100%;
-        height: 100px;
+        height: 60px;
         background: #fff;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
     }
 }
 </style>

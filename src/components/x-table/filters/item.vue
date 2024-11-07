@@ -16,23 +16,35 @@ const model = defineModel()
         </div>
         <div class="item-value">
             <!-- input -->
-            <el-input v-if="item.type === 'input'" v-model="model" clearable v-bind="item" />
+            <el-input v-if="item.type === 'input'" v-model="model" clearable v-bind="item.others" />
             <!-- select -->
-            <el-select v-if="item.type === 'select'" v-model="model" clearable :option="item.options" style="width: 240px">
+            <el-select
+                v-else-if="item.type === 'select'"
+                v-model="model"
+                clearable
+                v-bind="item.others" :option="item.options"
+                style="width: 240px"
+            >
                 <el-option v-for="option in item.options" :key="option.value" :label="option.label" :value="option.value" />
             </el-select>
-            <!-- date -->
-            <el-date-picker
-                v-if="item.type === 'date'" v-model="model" type="date" placeholder="选择日期" clearable
-                format="YYYY-MM-DD"
-                value-format="YYYY-MM-DD"
-            />
             <!-- datarange -->
             <el-date-picker
-                v-if="item.type === 'date-range'" v-model="model" class="date-range" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" clearable
+                v-else-if="item.type === 'daterange'"
+                v-model="model"
+                class="date-range"
+                type="daterange"
+                range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
                 format="YYYY-MM-DD"
                 value-format="YYYY-MM-DD"
+                clearable
+                v-bind="item.others"
             />
+            <!-- cascader -->
+            <el-cascader v-else-if="item.type === 'cascader'" v-model="model" :options="item.options" clearable v-bind="item.others" />
+            <!-- slot -->
+            <template v-else-if="item.type === 'slot'">
+                <slot :name="item.code" />
+            </template>
         </div>
     </div>
 </template>

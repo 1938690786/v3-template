@@ -9,12 +9,12 @@ interface Column {
 }
 defineProps({
     columns: { type: Array as PropType<Column[]>, default: () => [] },
+    listData: { type: Array, default: () => [] },
 })
-const model = defineModel()
 </script>
 
 <template>
-    <el-table :data="model">
+    <el-table :data="listData" stripe height="100%">
         <el-table-column v-for="(item, index) of columns" :key="index" :label="item.name" :prop="item.prop" />
     </el-table>
 </template>

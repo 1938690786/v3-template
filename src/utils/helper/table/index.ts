@@ -1,49 +1,123 @@
+import { XTableFilterCascader, XTableFilterDateRange, XTableFilterInput, XTableFilterSelect, XTableFilterSlot } from './class'
+
 export const filterHelper = {
     /**
      * 输入框
      *
      * @param {string} name 筛选器名称
      * @param {string} code 对应数据
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
+     * @param {boolean} [show] 是否展示（默认展示，传入false隐藏）
      * @param {string} placeholder 占位文案
+     * @param {Record<string, any>} [others] 其他element-plus的input参数
      */
     input: (
         name: string,
         code: string,
-        enable?: boolean,
-        icon?: string,
-        placeholder?: string,
+        show = true,
+        placeholder?: string | undefined,
+        others?: Record<string, any>,
     ) =>
-        new FrameListViewFilterItem(
+        new XTableFilterInput(
             'input',
             name,
             code,
-            enable,
-            icon,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
+            show,
             placeholder,
+            others,
         ),
 
     /**
-     * 手机号输入框
+     * 下拉选择
      *
      * @param {string} name 筛选器名称
      * @param {string} code 对应数据
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
+     * @param {DictionaryItem[]} options 下拉菜单列表
+     * @param {boolean} [show] 启用状态（默认启用，传入false禁用）
+     * @param {string} placeholder 占位文案
+     * @param {Record<string, any>} [others] 其他element-plus的select参数
      */
-    mobile: (name: string, code: string, enable?: boolean, icon?: string) =>
-        new FrameListViewFilterItem('mobile', name, code, enable, icon),
+    select: (
+        name: string,
+        code: string,
+        options: DictionaryItem[],
+        show = true,
+        placeholder?: string,
+        others?: Record<string, any>,
+    ) => {
+        return new XTableFilterSelect(
+            'select',
+            name,
+            code,
+            options,
+            show,
+            placeholder,
+            others,
+        )
+    },
+
+    /**
+     * 日期范围选择器
+     *
+     * @param {string} name 筛选器名称
+     * @param {string} code 对应数据
+     * @param {boolean} [show] 启用状态（默认启用，传入false禁用）
+     * @param {Record<string, any>} [others] 其他element-plus的date-picker参数
+     */
+    dateRange: (
+        name: string,
+        code: string,
+        show = true,
+        others?: Record<string, any>,
+    ) =>
+        new XTableFilterDateRange(
+            'daterange',
+            name,
+            code,
+            show,
+            others,
+        ),
+
+    /**
+     * 多级下拉选择
+     * @param {string} name 筛选器名称
+     * @param {string} code 对应数据
+     * @param {DictionaryItem[]} options 字典
+     * @param {boolean} [show] 启用状态（默认启用，传入false禁用）
+     * @param {Record<string, any>} [others] 其他element-plus的cascader参数
+     */
+    cascader: (
+        name: string,
+        code: string,
+        options: DictionaryItem[],
+        show = true,
+        others?: Record<string, any>,
+    ) =>
+        new XTableFilterCascader(
+            'cascader',
+            name,
+            code,
+            options,
+            show,
+            others,
+        ),
+
+    /**
+     * 插槽
+     *
+     * @param {string} name 筛选器名称
+     * @param {string} code 对应数据
+     * @param {boolean} [show] 启用状态（默认启用，传入false禁用）
+     * @returns slot
+     */
+    slot: (name: string, code: string, show = true) =>
+        new XTableFilterSlot('slot', name, code, show),
 
     /**
      * 日期选择器
      *
      * @param {string} name 筛选器名称
      * @param {string} code 对应数据
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
+     * @param {boolean} [show] 启用状态（默认启用，传入false禁用）
      */
     date: (
         name: string,
@@ -62,34 +136,6 @@ export const filterHelper = {
             undefined,
             undefined,
             undefined,
-            clearable,
-        ),
-
-    /**
-     * 日期范围选择器
-     *
-     * @param {string} name 筛选器名称
-     * @param {string} code 对应数据
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
-     */
-    dateRange: (
-        name: string,
-        code: string,
-        enable?: boolean,
-        icon?: string,
-        clearable?: boolean,
-        otherOptions?: any,
-    ) =>
-        new FrameListViewFilterItem(
-            'date-range',
-            name,
-            code,
-            enable,
-            icon,
-            undefined,
-            undefined,
-            undefined,
-            otherOptions,
             clearable,
         ),
 
@@ -121,79 +167,6 @@ export const filterHelper = {
             undefined,
             undefined,
             pickerOptions,
-        ),
-
-    /**
-     * 下拉选择
-     *
-     * @param {string} name 筛选器名称
-     * @param {string} code 对应数据
-     * @param {DictionaryItem[]} options 下拉菜单列表
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
-     * @param {(number | string)} [width] 宽度
-     */
-    select: (
-        name: string,
-        code: string,
-        options: DictionaryItem[],
-        multiple?: boolean,
-        enable?: boolean,
-        icon?: string,
-        width?: number | string,
-        collapseTags?: boolean,
-        placeholder?: string,
-        clearable = true,
-    ) => {
-        const other = {
-            multiple,
-            collapseTags,
-        }
-
-        return new FrameListViewFilterItem(
-            'select',
-            name,
-            code,
-            enable,
-            icon,
-            options,
-            width,
-            undefined,
-            other,
-            clearable,
-            placeholder,
-            undefined,
-            collapseTags,
-        )
-    },
-
-    /**
-     * 多级下拉选择
-     * @param {string} name 筛选器名称
-     * @param {string} code 对应数据
-     * @param {DictionaryItem[]} options 字典
-     * @param {boolean} [enable] 启用状态（默认启用，传入false禁用）
-     * @param {cascaderOptions} [otherOptions] cascader配置
-     * @param {(number | string)} [width] 宽度
-     */
-    cascader: (
-        name: string,
-        code: string,
-        options: DictionaryItem[],
-        enable?: boolean,
-        icon?: string,
-        otherOptions?: cascaderOptions,
-        width?: number | string,
-    ) =>
-        new FrameListViewFilterItem(
-            'cascader',
-            name,
-            code,
-            enable,
-            icon,
-            options,
-            width,
-            undefined,
-            otherOptions,
         ),
 
     /**
@@ -345,18 +318,6 @@ export const filterHelper = {
             placeholder,
         )
     },
-
-    /**
-     * 插槽
-     *
-     * @param name
-     * @param code
-     * @param enable
-     * @param icon
-     * @returns slot
-     */
-    slot: (name: string, code: string, enable?: boolean, icon?: string) =>
-        new FrameListViewFilterItem('slot', name, code, enable, icon),
 }
 
 export type FrameListViewFilterType =
