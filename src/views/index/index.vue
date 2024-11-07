@@ -1,5 +1,6 @@
 <script lang='ts' setup>
-import { filterHelper } from '@/utils/helper/table'
+import { tableHelper } from '@/utils/helper/table/table'
+import { filterHelper } from '@/utils/helper/table/filters'
 
 const listData = ref<any>([])
 
@@ -61,7 +62,7 @@ function API() {
                     age: 14,
                     sex: '男',
                 }],
-                total: 3,
+                total: 11,
             })
         }, 1000)
     })
@@ -76,25 +77,9 @@ function getData(): Promise<any> {
 
 const columns = computed(() => {
     return [
-        {
-            name: '姓名',
-            prop: 'name',
-            width: 200,
-            sort: true,
-            a: 1,
-        },
-        {
-            name: '年龄',
-            prop: 'age',
-            width: 200,
-            sort: true,
-        },
-        {
-            name: '性别',
-            prop: 'sex',
-            width: 200,
-            sort: true,
-        },
+        tableHelper.default('姓名', 'name'),
+        tableHelper.default('年龄', 'age'),
+        tableHelper.default('性别', 'sex', undefined, { tips: '这是一个提示' }),
     ]
 })
 const filters = computed(() => {

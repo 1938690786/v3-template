@@ -20,14 +20,8 @@ const props = defineProps({
     filters: { type: Array, default: () => [] },
     // 表格列
     columns: { type: Array as PropType<Column[]>, default: () => [] },
-    // 分页条每页数量
-    pageSize: { type: Number, default: 10 },
     // 表格行主键
     rowKey: { type: String, default: () => 'id' },
-    // 页码参数
-    pageKey: { type: String, default: 'page' },
-    // 分页参数
-    sizeKey: { type: String, default: 'size' },
     // 是否分页
     pagination: { type: Boolean, default: true },
 })
@@ -84,7 +78,11 @@ onMounted(() => {
             <TableData v-bind="{ listData, columns }" />
         </div>
         <div class="pagination">
-            <Pagination />
+            <Pagination v-if="pagination" v-model="model" @change="getData">
+                <template #footer>
+                    <slot name="footer" />
+                </template>
+            </Pagination>
         </div>
     </div>
 </template>
