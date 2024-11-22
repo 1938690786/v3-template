@@ -13,7 +13,9 @@
     "lint:error": "eslint --fix --quiet \"src/**/*.{js,vue,ts}\""
   },
   "dependencies": {
+    "@syyfe/web-request": "^1.0.2",
     "big.js": "^6.2.2",
+    "nanoid": "^5.0.8",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "^4.0.1",
     "vant": "^4.9.4",
