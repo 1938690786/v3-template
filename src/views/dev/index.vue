@@ -26,11 +26,19 @@ const list = reactive([
         route: '/dev/loading',
         name: '局部加载动画',
       },
+      {
+        route: '/dev/drag',
+        name: '拖拽',
+      },
     ],
   },
   {
-    title: '业务组件',
+    title: '设备型号',
     data: [
+      {
+        route: '/dev/ua',
+        name: '设备型号',
+      },
     ],
   },
   {
@@ -60,13 +68,10 @@ const list = reactive([
     <section>
       <div v-for="(item, index) of list" :key="index">
         <h3>{{ item.title }}</h3>
-        <div v-for="detail in item.data" :key="detail.route" class="mb-10 h-36 w-full rounded-24 bg-[#f7f8fa] px-24 leading-36" @click="jump(detail.route)">
+        <div v-for="detail in item.data" :key="detail.route" class="mb-10 h-36 w-full rounded-24 bg-[#f7f8fa] px-24 text-[14px] leading-36" @click="jump(detail.route)">
           {{ detail.name }}
         </div>
       </div>
     </section>
   </div>
 </template>
-
-<style scoped lang='scss'>
-</style>

@@ -44,6 +44,20 @@ const routers = [
     },
     component: () => import('@/views/dev/loading/index.vue'),
   },
+  {
+    path: '/dev/ua',
+    meta: {
+      title: 'ua',
+    },
+    component: () => import('@/views/dev/ua/index.vue'),
+  },
+  {
+    path: '/dev/drag',
+    meta: {
+      title: 'drag',
+    },
+    component: () => import('@/views/dev/drag/index.vue'),
+  },
 ]
 
 export default routers
