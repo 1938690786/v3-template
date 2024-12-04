@@ -6,6 +6,7 @@ const routers: RouteConfig[] = [
     meta: {
       title: '首页',
       isTab: true,
+      level: 1,
     },
     component: () => import('@/views/index.vue'),
   },
@@ -14,6 +15,7 @@ const routers: RouteConfig[] = [
     meta: {
       title: '我的',
       isTab: true,
+      level: 1,
     },
     component: () => import('@/views/user/index.vue'),
   },

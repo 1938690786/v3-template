@@ -13,10 +13,6 @@ const useApp = defineStore('app', () => {
   }
 
   // 动画
-  const isBack = ref<any>(null)
-  const setBack = (val: boolean | null) => {
-    isBack.value = val
-  }
   const routeTransitionName = ref('')
   const setName = (name: string) => {
     routeTransitionName.value = name
@@ -26,8 +22,6 @@ const useApp = defineStore('app', () => {
     mode,
     switchMode,
 
-    isBack,
-    setBack,
     routeTransitionName,
     setName,
   }

@@ -10,18 +10,6 @@ const { mode } = storeToRefs(app)
 const keepAliveRouteNames = computed(() => {
   return useRouteCache().routeCaches as string[]
 })
-
-/** 监听浏览器后退事件 */
-function handleListenBack(): void {
-  window.addEventListener(
-    'popstate',
-    () => {
-      app.setBack(true)
-    },
-    false,
-  )
-}
-handleListenBack()
 </script>
 
 <template>
