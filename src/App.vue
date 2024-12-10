@@ -5,7 +5,6 @@ import useRouteCache from '@/config/pinia/modules/routeCache'
 
 const app = useApp()
 const { routeTransitionName } = storeToRefs(app)
-const { mode } = storeToRefs(app)
 
 const keepAliveRouteNames = computed(() => {
   return useRouteCache().routeCaches as string[]
@@ -13,15 +12,11 @@ const keepAliveRouteNames = computed(() => {
 </script>
 
 <template>
-  <VanConfigProvider :theme="mode">
-    <NavBar />
-    <router-view v-slot="{ Component, route }">
-      <transition :name="routeTransitionName">
-        <keep-alive :include="keepAliveRouteNames">
-          <component :is="Component" :key="route.name" />
-        </keep-alive>
-      </transition>
-    </router-view>
-    <TabBar />
-  </VanConfigProvider>
+  <router-view v-slot="{ Component, route }">
+    <transition :name="routeTransitionName">
+      <keep-alive :include="keepAliveRouteNames">
+        <component :is="Component" :key="route.name" />
+      </keep-alive>
+    </transition>
+  </router-view>
 </template>

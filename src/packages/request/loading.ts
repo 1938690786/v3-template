@@ -35,7 +35,7 @@ function closeLoading(): void {
   }
   reqNum--
   if (reqNum === 0) {
-    Toast.clear()
+    closeToast()
   }
 }
 

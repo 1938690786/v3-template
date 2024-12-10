@@ -38,7 +38,7 @@ function getStartOffset(startIndex) {
   return startIndex * itemSize.value
 }
 
-const { top } = useElementBounding(viewport)
+const { top } = useElementBounding(viewport.value)
 
 watch(() => top.value, (top) => {
   console.log(top)

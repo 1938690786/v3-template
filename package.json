@@ -6,14 +6,15 @@
   "scripts": {
     "dev": "vite --mode development",
     "build": "npm run build:prod",
-    "build:test": "vite build --mode test",
-    "build:prod": "vue-tsc -b && vite build --mode production",
+    "build:test": "vue-tsc --noEmit --skipLibCheck && vite build --mode test",
+    "build:prod": "vue-tsc --noEmit --skipLibCheck && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint --fix \"src/**/*.{js,vue,ts}\"",
     "lint:error": "eslint --fix --quiet \"src/**/*.{js,vue,ts}\""
   },
   "dependencies": {
     "@syyfe/web-request": "^1.0.2",
+    "@vueuse/core": "^12.0.0",
     "big.js": "^6.2.2",
     "lodash-es": "^4.17.21",
     "nanoid": "^5.0.8",
@@ -42,6 +43,7 @@
     "unplugin-auto-import": "^0.18.2",
     "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.1",
+    "vite-plugin-compression": "^0.5.1",
     "vue-dompurify-html": "^5.1.0",
     "vue-router": "^4.4.3",
     "vue-tsc": "^2.0.29"

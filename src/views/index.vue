@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <Welcome />
+  <X-Layout>
+    <Welcome />
+  </X-Layout>
 </template>

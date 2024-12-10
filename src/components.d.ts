@@ -26,5 +26,6 @@ declare module 'vue' {
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     Welcome: typeof import('./components/Welcome.vue')['default']
     XDrag: typeof import('./components/XDrag.vue')['default']
+    XLayout: typeof import('./components/XLayout.vue')['default']
   }
 }
