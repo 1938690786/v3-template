@@ -30,6 +30,10 @@ const list = reactive([
         route: '/dev/drag',
         name: '拖拽',
       },
+      {
+        route: '/dev/virtuallist',
+        name: '虚拟列表',
+      },
     ],
   },
   {

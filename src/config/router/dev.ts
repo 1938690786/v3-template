@@ -66,6 +66,14 @@ const routers = [
     },
     component: () => import('@/views/dev/drag/index.vue'),
   },
+  {
+    path: '/dev/virtuallist',
+    meta: {
+      title: 'virtuallist',
+      level: 3,
+    },
+    component: () => import('@/views/dev/virtuallist/index.vue'),
+  },
 ]
 
 export default routers
