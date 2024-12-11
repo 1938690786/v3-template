@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <X-Layout>
+  <X-Layout tabbar>
     <Welcome />
   </X-Layout>
 </template>

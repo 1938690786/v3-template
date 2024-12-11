@@ -28,7 +28,7 @@ function copy(): void {
 </script>
 
 <template>
-  <frame-view class="copy">
+  <X-Layout>
     <h1 class="text-[36px]">
       以指令的形式调用
     </h1>
@@ -63,7 +63,7 @@ function copy(): void {
       电话：{{ mobile }}
       <span class="copy-btn" @click="copy">复制</span>
     </div>
-  </frame-view>
+  </X-Layout>
 </template>
 
 <style scoped>

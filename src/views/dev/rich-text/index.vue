@@ -5,5 +5,7 @@ const content = ref(
 </script>
 
 <template>
-  <RichText :content="content" />
+  <X-Layout>
+    <RichText :content="content" />
+  </X-Layout>
 </template>

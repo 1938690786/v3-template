@@ -51,18 +51,20 @@ watch(() => top.value, (top) => {
 </script>
 
 <template>
-  <div class="virtuallist">
-    <div ref="viewport" class="viewport relative h-[100%]">
-      <div class="list-phantom absolute left-0 top-0 w-full" :style="`height: ${list.length * itemSize}px`" />
-      <div class="list-area" :style="`transform: translate3d(0,${startOffset}px, 0)`">
-        <template v-for="(item, index) of list" :key="item.id">
-          <div v-if="isBetweenViewRanges(index)" class="item border border-b-sky-500 border-b-solid text-center text-sky-500" :style="`height: ${itemSize}px; line-height: ${itemSize}px`">
-            {{ item.id }}
-          </div>
-        </template>
+  <X-Layout>
+    <div class="virtuallist">
+      <div ref="viewport" class="viewport relative h-[100%]">
+        <div class="list-phantom absolute left-0 top-0 w-full" :style="`height: ${list.length * itemSize}px`" />
+        <div class="list-area" :style="`transform: translate3d(0,${startOffset}px, 0)`">
+          <template v-for="(item, index) of list" :key="item.id">
+            <div v-if="isBetweenViewRanges(index)" class="item border border-b-sky-500 border-b-solid text-center text-sky-500" :style="`height: ${itemSize}px; line-height: ${itemSize}px`">
+              {{ item.id }}
+            </div>
+          </template>
+        </div>
       </div>
     </div>
-  </div>
+  </X-Layout>
 </template>
 
 <style scoped lang='scss'>

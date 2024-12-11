@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2020",
     "lib": ["ES2023"],
     "moduleDetection": "force",
     "module": "ESNext",

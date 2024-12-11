@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  user
+  <X-Layout tabbar>
+    <div>user</div>
+  </X-Layout>
 </template>
 
 <style scoped lang='scss'>

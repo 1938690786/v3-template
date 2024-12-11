@@ -7,11 +7,13 @@ function handleClick(): void {
 </script>
 
 <template>
-  <XDrag :auto-ads="true" @click="handleClick">
-    <div class="h-[60px] w-[60px] flex items-center justify-center rounded-[50%] bg-[#3b3b3b] text-[14px] text-white">
-      拖我
-    </div>
-  </XDrag>
+  <X-Layout>
+    <XDrag :auto-ads="true" @click="handleClick">
+      <div class="h-[60px] w-[60px] flex items-center justify-center rounded-[50%] bg-[#3b3b3b] text-[14px] text-white">
+        拖我
+      </div>
+    </XDrag>
+  </X-Layout>
 </template>
 
 <style lang="scss" scoped>

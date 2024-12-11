@@ -10,21 +10,27 @@ const router = createRouter({
 
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
-  console.log(to.meta?.level, from.meta?.level)
+  console.log(to.meta, from.meta?.level)
   const app = useApp()
   const toLevel = to.meta?.level
   const fromLevel = from.meta?.level
-  if (toLevel && fromLevel) {
-    if (toLevel > fromLevel) {
-      app.setName('slide-right')
+  if (!to.meta.isTab) {
+    if (toLevel && fromLevel) {
+      if (toLevel > fromLevel) {
+        app.setName('slide-right')
+      }
+      else {
+        app.setName('slide-left')
+      }
     }
     else {
-      app.setName('slide-left')
+      app.setName('absolute-layout')
     }
   }
   else {
-    app.setName('absolute-layout')
+    app.setName('')
   }
+
   useRouteCache().addRoute(to)
   next()
 })

@@ -29,18 +29,18 @@ function handleJump() {
 </script>
 
 <template>
-  <h1 class="my-30 text-center text-20">
+  <div class="my-30 text-center text-44">
     welcome to h5-template
-  </h1>
+  </div>
   <div class="flex items-center justify-center">
     <template v-for="(item, index) of list" :key="index">
-      <div class="mr-30 flex flex-col items-center text-blueGray last-of-type:mr-0">
-        <img class="w-50" :src="item.icon" alt="">
-        <span class="mt-10">@{{ item.version }}</span>
+      <div class="mr-60 flex flex-col items-center text-blueGray last-of-type:mr-0">
+        <img class="w-100" :src="item.icon" alt="">
+        <span class="mt-10 text-32">@{{ item.version }}</span>
       </div>
     </template>
   </div>
-  <button class="mx-auto mt-30 flex items-center justify-center" @click="handleJump">
+  <button class="mx-auto mt-30 flex items-center justify-center text-32" @click="handleJump">
     开发者工具库<van-icon name="arrow" />
   </button>
 </template>

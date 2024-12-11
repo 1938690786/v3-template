@@ -15,7 +15,9 @@ const list = ref([
 </script>
 
 <template>
-  <van-cell-group>
-    <van-cell v-for="(item, idx) of list" :key="idx" :title="item.title" :value="`${item.value}`" />
-  </van-cell-group>
+  <X-Layout>
+    <van-cell-group>
+      <van-cell v-for="(item, idx) of list" :key="idx" :title="item.title" :value="`${item.value}`" />
+    </van-cell-group>
+  </X-Layout>
 </template>

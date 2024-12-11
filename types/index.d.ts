@@ -17,3 +17,14 @@ interface RouteConfig {
 type _TouchEvent = TouchEvent & {
   _isScroller?: boolean
 }
+
+export interface GeoLocationType {
+  module?: string
+  latlng: {
+    lat: number
+    lng: number
+  }
+  poiaddress?: string
+  poiname?: string
+  cityname?: string
+}

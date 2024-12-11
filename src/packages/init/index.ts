@@ -1,19 +1,5 @@
 import type { _TouchEvent } from 'types'
-import useRouteTransitionNameStore from '@/config/pinia/modules/routeTransitionName'
 
-const routeTransitionNameStore = useRouteTransitionNameStore()
-
-/** 监听浏览器后退事件 */
-function handleListenBack(): void {
-  window.addEventListener(
-    'popstate',
-    () => {
-      routeTransitionNameStore.setName('slide-left')
-      routeTransitionNameStore.setBack(true)
-    },
-    false,
-  )
-}
 /** 禁止页面级的touchmove事件 */
 function disableTouchMove(): void {
   document.body.addEventListener(
@@ -30,5 +16,4 @@ function disableTouchMove(): void {
   )
 }
 
-handleListenBack()
 disableTouchMove()

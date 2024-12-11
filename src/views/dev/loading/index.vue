@@ -15,9 +15,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <Loading :loading="loading" :error="error" @retry="handleRetry">
-    <p>加载完成</p>
-  </Loading>
+  <X-Layout>
+    <Loading :loading="loading" :error="error" @retry="handleRetry">
+      <p>加载完成</p>
+    </Loading>
+  </X-Layout>
 </template>
 
 <style lang="scss" scoped>

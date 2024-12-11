@@ -3,6 +3,7 @@ import antfu from '@antfu/eslint-config'
 export default antfu({
   // enable UnoCSS support
   // https://unocss.dev/integrations/vscode
+
   unocss: true,
 
   formatters: {
@@ -25,7 +26,10 @@ export default antfu({
   },
   rules: {
     'no-console': 'off',
-    'no-new': 'off'
+    'no-new': 'off',
+    'regexp': {
+      'no-unused-capturing-group': off
+    }
   },
 
   ignores: [

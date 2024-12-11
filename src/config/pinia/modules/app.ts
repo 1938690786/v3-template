@@ -18,12 +18,17 @@ const useApp = defineStore('app', () => {
     routeTransitionName.value = name
   }
 
+  // 头部安全距离
+  const safeAreaTop = ref(0)
+
   return {
     mode,
     switchMode,
 
     routeTransitionName,
     setName,
+
+    safeAreaTop,
   }
 })
 
