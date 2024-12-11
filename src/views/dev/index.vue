@@ -68,7 +68,7 @@ const list = reactive([
 
 <template>
   <X-Layout>
-    <div class="bg-white px-16 py-16">
+    <div class="bg-white p-32">
       <h1 class="text-48">
         开发者工具
       </h1>
@@ -77,7 +77,7 @@ const list = reactive([
           <h3 class="text-36">
             {{ item.title }}
           </h3>
-          <div v-for="detail in item.data" :key="detail.route" class="mb-10 h-72 w-full rounded-48 bg-[#f7f8fa] px-48 text-32 leading-72" @click="jump(detail.route)">
+          <div v-for="detail in item.data" :key="detail.route" class="mb-10 h-72 w-full rounded-48 bg-[#f7f8fa] px-48 text-28 leading-72" @click="jump(detail.route)">
             {{ detail.name }}
           </div>
         </div>
