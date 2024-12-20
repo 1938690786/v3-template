@@ -27,9 +27,6 @@ export default antfu({
   rules: {
     'no-console': 'off',
     'no-new': 'off',
-    'regexp': {
-      'no-unused-capturing-group': off
-    }
   },
 
   ignores: [

@@ -17,6 +17,7 @@ body {
     'Microsoft Yahei',
     sans-serif;
   text-size-adjust: 100% !important; /** IOS禁止微信调整字体大小 */
+  overflow: hidden;
 }
 
 html {
