@@ -1,12 +1,11 @@
 import { createApp } from 'vue'
-import VConsole from 'vconsole'
 import './styles/index.css'
 import VueDOMPurifyHTML from 'vue-dompurify-html'
 import App from './App.vue'
 import 'virtual:uno.css'
-import { useEnv } from './hooks/useEnv'
 import pinia from '@/config/pinia'
 import router from '@/packages/vue-router/index'
+import '@/packages/init/index'
 
 // 引入全局自定义指令
 import directive from '@/packages/directive'
@@ -21,10 +20,6 @@ import 'vant/es/toast/style'
 import 'vant/es/dialog/style'
 import 'vant/es/notify/style'
 import 'vant/es/image-preview/style'
-
-if (!useEnv('production')) {
-  new VConsole()
-}
 
 const app = createApp(App)
 
