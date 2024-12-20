@@ -13,10 +13,16 @@ const props = withDefaults(defineProps<{
   immersion?: boolean
   // 头部透明度
   opacity?: number
+  // 背景色
+  backgroundColor?: string
+  // 背景图片
+  backgroundImage?: string
 }>(), {
   tabbar: false,
   immersion: false,
   opacity: 100,
+  backgroundColor: '',
+  backgroundImage: '',
 })
 
 const router = useRouter()
@@ -59,11 +65,19 @@ const getSafeAreaTop = computed(() => {
 const showTabbar = computed(() => {
   return props.tabbar
 })
+
+const computedLayoutStyle = computed(() => {
+  const map: Record<string, any> = {
+    backgroundColor: props.backgroundColor,
+    backgroundImage: props.backgroundImage,
+  }
+  return map
+})
 </script>
 
 <template>
   <VanConfigProvider :theme="mode">
-    <div class="h-screen flex flex-col" :class="[getSafeAreaTop ? '' : 'top-safe-area', showTabbar ? '' : 'bottom-safe-area']">
+    <div class="h-screen flex flex-col" :class="[getSafeAreaTop ? '' : 'top-safe-area', showTabbar ? '' : 'bottom-safe-area']" :style="computedLayoutStyle">
       <!-- navbar -->
       <VanNavBar
         :title="title"
@@ -92,10 +106,11 @@ const showTabbar = computed(() => {
         <slot />
       </div>
       <!-- tabbar -->
-      <van-tabbar v-if="showTabbar" placeholder active-color="#F12F1A" inactive-color="#000" route :safe-area-inset-bottom="true">
+      <van-tabbar v-if="showTabbar" placeholder active-color="#1A1919" inactive-color="#8c8c8c" route :safe-area-inset-bottom="true">
         <van-tabbar-item v-for="(item, index) of tabbar" :key="index" replace :to="item.router">
-          <span>{{ item.title }}</span><template #icon="props">
-            <img :src="props.active ? item.active : item.inactive">
+          <span>{{ item.title }}</span>
+          <template #icon="props">
+            <img class="w-48 !h-52" :src="props.active ? item.active : item.inactive">
           </template>
         </van-tabbar-item>
       </van-tabbar>
