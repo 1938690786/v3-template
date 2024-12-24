@@ -78,11 +78,23 @@ function changeItemStatus(type: 0 | 1) {
 function created() {
     console.log('created')
 }
+
+function operateClick(row: any, index: number) {
+    console.log('operateClick', row, index)
+}
 </script>
 
 <template>
     <XContent>
-        <XTable v-bind="{ columns, filters, listData, tabs }" ref="tableRef" v-model="datas" :request="getData" :select-enable="true" :index-enable="true">
+        <XTable
+            v-bind="{ columns, filters, listData, tabs }"
+            ref="tableRef"
+            v-model="datas"
+            :request="getData"
+            :select-enable="true"
+            :index-enable="true"
+            @operate="operateClick"
+        >
             <!-- 表格右上角插槽 -->
             <template #handle>
                 <el-button type="danger" @click="changeItemStatus(0)">

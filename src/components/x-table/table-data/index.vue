@@ -8,6 +8,10 @@ defineProps({
     indexEnable: { type: Boolean, default: false },
 })
 
+const emits = defineEmits<{
+    (e: 'operate', row: any, index: number): void
+}>()
+
 const model: any = defineModel<{
     total: number
     filterData: Record<string, any>
@@ -30,7 +34,7 @@ function selectChange(e: any) {
  * @returns label 值
  */
 function getDictValue(option: Option[], value: string | number): string | number {
-    if (option == undefined || value === undefined) {
+    if (option === undefined || value === undefined) {
         return '-'
     }
     const index = option?.findIndex((item: Option) => item.value === value)
@@ -46,8 +50,7 @@ function getDictValue(option: Option[], value: string | number): string | number
  * 获取状态值
  * @param option 状态字典
  * @param value 状态值
- * @returns title 值
- * @returns type 状态
+ * @returns title 值 type 状态
  */
 function getStatusValue(option: Status[], value: string | number): {
     title: string | number
@@ -72,6 +75,11 @@ function getStatusValue(option: Status[], value: string | number): {
             type: 'default',
         }
     }
+}
+
+function operateClick(row: any, index: number) {
+    console.log(row, index)
+    emits('operate', row, index)
 }
 </script>
 
@@ -161,7 +169,7 @@ function getStatusValue(option: Status[], value: string | number): {
                     v-bind="item.others"
                 >
                     <template #default="{ row }">
-                        <XOperate :list="item.items" :row="row" />
+                        <XOperate :list="item.items" :row="row" :idx="index" @click="operateClick" />
                     </template>
                 </el-table-column>
             </template>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { XTtableOperate } from '@/utils/helper/table/table/index'
 
-const props = defineProps<{ list: Array<XTtableOperate>, row: Record<string, any> }>()
+const props = defineProps<{ list: Array<XTtableOperate>, row: Record<string, any>, idx: number }>()
 const emits = defineEmits<{
     (e: 'click', row: any, index: number): void
 }>()
@@ -24,8 +24,9 @@ function operateList(): any {
     })
 }
 
-function click(row: any, index: number) {
-    emits('click', row, index)
+function click() {
+    console.log(props)
+    emits('click', props.row, props.idx)
 }
 </script>
 

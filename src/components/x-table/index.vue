@@ -24,6 +24,10 @@ const props = defineProps({
     indexEnable: { type: Boolean, default: false },
 })
 
+const emits = defineEmits<{
+    (e: 'operate', row: any, index: number): void
+}>()
+
 const model: any = defineModel<{
     total: number
     filterData: Record<string, any>
@@ -74,6 +78,10 @@ onMounted(() => {
     getData()
 })
 
+function operateClick(row: any, index: number) {
+    emits('operate', row, index)
+}
+
 defineExpose({ refresh })
 </script>
 
@@ -103,7 +111,7 @@ defineExpose({ refresh })
                         <slot name="handle" />
                     </div>
                 </div>
-                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model">
+                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model" @operate="operateClick">
                     <template v-for="item of tableColumnSlots" #[item]>
                         <slot :name="item" />
                     </template>
