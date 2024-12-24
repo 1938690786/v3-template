@@ -1,14 +1,16 @@
+<script lang="ts" setup>
+withDefaults(defineProps<{ type: 'success' | 'primary' | 'info' | 'warning' | 'danger' | 'default', title: string | number }>(), {
+    type: 'success',
+})
+</script>
+
 <template>
     <span class="x-status flex items-center justify-center">
-        <span :class="['tag-type', `tag-type-${type}`]"></span>
+        <span class="tag-type" :class="[`tag-type-${type}`]" />
         <span class="tag-title">{{ title }}</span>
     </span>
 </template>
-<script lang="ts" setup>
-withDefaults(defineProps<{type: "success" | "primary" | "info" | "warning" | "danger" | "default"; title: string }>(), {
-    type: "success",
-});
-</script>
+
 <style lang="scss" scoped>
 .x-status {
     vertical-align: middle;
@@ -57,7 +59,7 @@ withDefaults(defineProps<{type: "success" | "primary" | "info" | "warning" | "da
             border-width: 1px;
             border-style: solid;
             border-radius: 50%;
-            content: "";
+            content: '';
         }
     }
     @keyframes antStatusProcessing {

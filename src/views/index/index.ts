@@ -21,7 +21,7 @@ export const roleOption: Option[] = [
 /** 状态字典 */
 export const statusOption: Status[] = [
     {
-        label: '正常',
+        label: '启用',
         value: 1,
         status: 'success',
     },

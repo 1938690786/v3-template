@@ -74,7 +74,7 @@ onMounted(() => {
     getData()
 })
 
-defineExpose({refresh})
+defineExpose({ refresh })
 </script>
 
 <template>

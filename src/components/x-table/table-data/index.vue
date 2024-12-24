@@ -36,7 +36,10 @@ function getDictValue(option: Option[], value: string | number): string | number
     const index = option?.findIndex((item: Option) => item.value === value)
     if (index > -1) {
         return option[index].label
-    } else return '-'
+    }
+    else {
+        return '-'
+    }
 }
 
 /**
@@ -46,25 +49,28 @@ function getDictValue(option: Option[], value: string | number): string | number
  * @returns title 值
  * @returns type 状态
  */
- function getStatusValue(option: Status[], value: string | number): {
+function getStatusValue(option: Status[], value: string | number): {
     title: string | number
     type: StatusType
- } {
+} {
     if (value === undefined || option === undefined) {
         return {
             title: '-',
-            type: 'default'
+            type: 'default',
         }
     }
     const index = option?.findIndex((item: Option) => item.value === value)
     if (index > -1) {
         return {
             title: option[index].label,
-            type: option[index].status
+            type: option[index].status,
         }
-    } else return {
-        title: '-',
-        type: 'default'
+    }
+    else {
+        return {
+            title: '-',
+            type: 'default',
+        }
     }
 }
 </script>
@@ -138,13 +144,26 @@ function getDictValue(option: Option[], value: string | number): string | number
                         </el-tooltip>
                     </template>
                     <template #default="{ row }">
-                        <XStatus :type="getStatusValue(item.status, row[item.prop]).type" :title="getStatusValue(item.status, row[item.prop]).title"></XStatus>
+                        <XStatus :type="getStatusValue(item.status, row[item.prop]).type" :title="getStatusValue(item.status, row[item.prop]).title" />
                     </template>
                 </el-table-column>
                 <!-- 插槽 -->
                 <template v-else-if="item.type === 'slot'">
                     <slot :name="item.prop" />
                 </template>
+                <!-- 操作列 -->
+                <el-table-column
+                    v-else-if="item.type === 'operate'"
+                    :label="item.name"
+                    :prop="item.prop"
+                    :width="item.width ? `${item.width}px` : undefined"
+                    align="center"
+                    v-bind="item.others"
+                >
+                    <template #default="{ row }">
+                        <XOperate :list="item.items" :row="row" />
+                    </template>
+                </el-table-column>
             </template>
         </template>
     </el-table>

@@ -120,11 +120,9 @@ export const tableHelper = {
     operate(
         name: string,
         items: XTtableOperate[],
-        width?: number | undefined,
-        others?: {
-            show?: boolean
-            tips?: string
-            [key: string]: any
+        width = 150,
+        others = {
+            align: 'center',
         },
     ) {
         return new XTableTableOperate(
@@ -140,12 +138,12 @@ export const tableHelper = {
 export interface XTtableOperate {
     /** 标签（按钮文字） */
     label: string | ((row: any) => string)
-    /** 点击事件 */
-    handler: (row: any, index: number) => void
     /** 是否展示（仅在===false时不展示） */
-    show?: boolean | ((row: any, index: number) => boolean)
+    show?: boolean | ((row: any) => boolean)
     /** 是否禁用（仅在===false时禁用） */
     disabled?: boolean | ((row: any, index: number) => boolean)
     /** 按钮颜色 */
-    color?: string
+    others?: {
+        [key: string]: any
+    }
 }

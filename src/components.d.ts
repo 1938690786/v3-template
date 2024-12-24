@@ -17,6 +17,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TableData: typeof import('./components/x-table/table-data/index.vue')['default']
     XContent: typeof import('./components/x-content/index.vue')['default']
+    XOperate: typeof import('./components/x-operate/index.vue')['default']
     XStatus: typeof import('./components/x-status/index.vue')['default']
     XSvg: typeof import('./components/x-svg/index.vue')['default']
     XTable: typeof import('./components/x-table/index.vue')['default']

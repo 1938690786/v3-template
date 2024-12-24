@@ -31,17 +31,19 @@ function getData(): Promise<any> {
 const columns = computed(() => {
     return [
         tableHelper.default('账号', 'account'),
-        tableHelper.dict('角色', 'role', roleOption),
         tableHelper.default('注册时间', 'createTime'),
         tableHelper.default('上次登录时间', 'lastLogTime'),
+        tableHelper.dict('角色', 'role', roleOption),
         tableHelper.status('状态', 'status', statusOption),
         tableHelper.operate('操作', [{
             label: '禁用',
-            handler(row: any) {
-                ElMessage({
-                    message: '禁用成功',
-                    type: 'success',
-                })
+            show: (row) => {
+                return row.status === 1
+            },
+        }, {
+            label: '启用',
+            show: (row) => {
+                return row.status === 0
             },
         }]),
     ]
