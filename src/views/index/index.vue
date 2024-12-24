@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import { ElMessage } from 'element-plus'
-import { API, roleOption } from './index'
+import { API, roleOption, statusOption } from './index'
 import { tableHelper } from '@/utils/helper/table/table'
 import { filterHelper } from '@/utils/helper/table/filters'
 
@@ -31,7 +31,7 @@ const columns = computed(() => {
         tableHelper.dict('角色', 'role', roleOption),
         tableHelper.default('注册时间', 'createTime'),
         tableHelper.default('上次登录时间', 'lastLogTime'),
-        tableHelper.slot('状态', 'status'),
+        tableHelper.status('状态', 'status', statusOption),
         tableHelper.operate('操作', [{
             label: '禁用',
             handler(row: any) {
@@ -81,6 +81,18 @@ function created() {
 <template>
     <XContent>
         <XTable v-bind="{ columns, filters, listData, tabs }" ref="tableRef" v-model="datas" :request="getData" :select-enable="true" :index-enable="true">
+            <!-- 表格右上角插槽 -->
+            <template #handle>
+                <el-button type="danger" @click="changeItemStatus(0)">
+                    批量禁用
+                </el-button>
+                <el-button type="primary" @click="changeItemStatus(1)">
+                    批量启用
+                </el-button>
+                <el-button type="primary" @click="created">
+                    创建新数据
+                </el-button>
+            </template>
             <template #test>
                 <div>这是插槽渲染的</div>
             </template>
@@ -96,18 +108,7 @@ function created() {
                     </template>
                 </el-table-column>
             </template>
-            <!-- 表格有上角按钮 -->
-            <template #handle>
-                <el-button type="danger" @click="changeItemStatus(0)">
-                    批量禁用
-                </el-button>
-                <el-button type="primary" @click="changeItemStatus(1)">
-                    批量启用
-                </el-button>
-                <el-button type="primary" @click="created">
-                    创建新数据
-                </el-button>
-            </template>
+            <!-- 底部插槽 -->
             <template #footer>
                 <el-button type="primary" @click="created">
                     底部插槽

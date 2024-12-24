@@ -14,6 +14,20 @@ export const roleOption = [
     },
 ]
 
+/** 状态字典 */
+export const statusOption: Status[] = [
+    {
+        label: '正常',
+        value: 1,
+        status: 'success',
+    },
+    {
+        label: '禁用',
+        value: 0,
+        status: 'danger',
+    },
+]
+
 export function API() {
     return new Promise((resolve) => {
         setTimeout(() => {

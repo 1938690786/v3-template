@@ -25,12 +25,47 @@ function selectChange(e: any) {
 
 /**
  * 获取字典值
+ * @param option 字典
+ * @param value 值
+ * @returns label 值
  */
-function getDictValue(option: Option[], value: string | number) {
-    const index = option.findIndex((item: Option) => item.value === value)
+function getDictValue(option: Option[], value: string | number): string | number {
+    if (option == undefined || value === undefined) {
+        return '-'
+    }
+    const index = option?.findIndex((item: Option) => item.value === value)
     if (index > -1) {
         return option[index].label
     } else return '-'
+}
+
+/**
+ * 获取状态值
+ * @param option 状态字典
+ * @param value 状态值
+ * @returns title 值
+ * @returns type 状态
+ */
+ function getStatusValue(option: Status[], value: string | number): {
+    title: string | number
+    type: StatusType
+ } {
+    if (value === undefined || option === undefined) {
+        return {
+            title: '-',
+            type: 'default'
+        }
+    }
+    const index = option?.findIndex((item: Option) => item.value === value)
+    if (index > -1) {
+        return {
+            title: option[index].label,
+            type: option[index].status
+        }
+    } else return {
+        title: '-',
+        type: 'default'
+    }
 }
 </script>
 
@@ -40,6 +75,7 @@ function getDictValue(option: Option[], value: string | number) {
         <el-table-column v-if="selectEnable" type="selection" width="55" />
         <template v-for="(item, index) of columns" :key="index">
             <template v-if="item?.others?.show !== false">
+                <!-- 默认列 -->
                 <el-table-column
                     v-if="item.type === 'default'"
                     :label="item.name"
@@ -59,6 +95,7 @@ function getDictValue(option: Option[], value: string | number) {
                         </el-tooltip>
                     </template>
                 </el-table-column>
+                <!-- 字典列 -->
                 <el-table-column
                     v-else-if="item.type === 'dict'"
                     :label="item.name"
@@ -81,6 +118,30 @@ function getDictValue(option: Option[], value: string | number) {
                         {{ getDictValue(item.dict, row[item.prop]) }}
                     </template>
                 </el-table-column>
+                <!-- 状态列 -->
+                <el-table-column
+                    v-else-if="item.type === 'status'"
+                    :label="item.name"
+                    :prop="item.prop"
+                    :width="item.width ? `${item.width}px` : undefined"
+                    v-bind="item.others"
+                >
+                    <template v-if="item.others?.tips" #header>
+                        {{ item.name }}
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="item.others?.tips"
+                            placement="top"
+                        >
+                            <el-icon><QuestionFilled /></el-icon>
+                        </el-tooltip>
+                    </template>
+                    <template #default="{ row }">
+                        <XStatus :type="getStatusValue(item.status, row[item.prop]).type" :title="getStatusValue(item.status, row[item.prop]).title"></XStatus>
+                    </template>
+                </el-table-column>
+                <!-- 插槽 -->
                 <template v-else-if="item.type === 'slot'">
                     <slot :name="item.prop" />
                 </template>

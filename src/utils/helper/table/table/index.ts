@@ -1,4 +1,4 @@
-import { XTableTableDefault, XTableTableDict, XTableTableOperate, XTableTableSlot } from './class'
+import { XTableTableDefault, XTableTableDict, XTableTableOperate, XTableTableSlot, XTableTableStatus } from './class'
 
 /**
  * 表格列配置
@@ -56,6 +56,36 @@ export const tableHelper = {
             name,
             prop,
             dict,
+            width,
+            others,
+        )
+    },
+
+    /**
+     * 状态项
+     *
+     * @param {string} name 对应列的 title
+     * @param {string} prop 对应数据
+     * @param {Status[]} status 状态类型
+     * @param {number | undefined} width 列的宽度，默认自适应
+     * @param {Record<string, any>} [others] 其他Table-column 属性，show：是否展示 （默认true） tips: 提示文字
+     */
+    status(
+        name: string,
+        prop: string,
+        status: Status[],
+        width?: number | undefined,
+        others?: {
+            show?: boolean
+            tips?: string
+            [key: string]: any
+        },
+    ) {
+        return new XTableTableStatus(
+            'status',
+            name,
+            prop,
+            status,
             width,
             others,
         )
