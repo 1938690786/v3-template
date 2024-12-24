@@ -1,5 +1,9 @@
 /** 年纪字典 */
-export const roleOption = [
+export const roleOption: Option[] = [
+    {
+        label: '全部',
+        value: '',
+    },
     {
         label: '运营',
         value: 1,

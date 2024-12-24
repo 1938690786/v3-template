@@ -9,7 +9,10 @@ const listData = ref<any>([])
 
 const datas = reactive({
     total: 0,
-    filterData: {},
+    filterData: {
+        role: '',
+        account: 1,
+    },
     selected: [],
     tabData: '1',
     pageData: {
@@ -45,10 +48,9 @@ const columns = computed(() => {
 })
 const filters = computed(() => {
     return [
-        filterHelper.input('姓名', 'name'),
-        filterHelper.select('年纪', 'grade', [{ label: '一年级', value: 1 }, { label: '二年级', value: 2 }, { label: '三年级', value: 3 }]),
-        filterHelper.dateRange('修改日期', 'updataDate'),
-        filterHelper.cascader('区域', 'area', [{ label: '北京', value: 1, children: [{ label: '朝阳', value: 11 }] }, { label: '上海', value: 2, children: [{ label: '浦东', value: 222 }] }]),
+        filterHelper.input('账号', 'account'),
+        filterHelper.select('角色', 'role', roleOption),
+        filterHelper.select('状态', ' status', statusOption),
         filterHelper.slot('插槽', 'test'),
     ]
 })
