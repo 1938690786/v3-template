@@ -39,6 +39,48 @@ export class XTableTableDefault {
 }
 
 /**
+ * table字典列生成类
+ */
+export class XTableTableDict {
+    /** 类型 */
+    type: XTableTableType
+    /** 表格列 header */
+    name: string
+    /** 对应数据的key */
+    prop: string
+    /** 字典 */
+    dict: Option[]
+    /** 宽度 */
+    width?: number | undefined
+    others?: {
+        /** 是否展示（仅在===false时不展示） */
+        show?: boolean
+        /** 是否排序 */
+        sort?: boolean
+        /** tips */
+        tips?: string
+        /** 其他配置项 */
+        [key: string]: any
+    }
+
+    constructor(
+        type: XTableTableType,
+        name: string,
+        prop: string,
+        dict: Option[],
+        width?: number,
+        others?: Record<string, any>,
+    ) {
+        this.type = type
+        this.name = name
+        this.prop = prop
+        this.dict = dict
+        this.width = width
+        this.others = others
+    }
+}
+
+/**
  * table 插槽列生成类
  */
 export class XTableTableSlot {
@@ -115,4 +157,4 @@ export class XTableTableOperate {
 }
 
 /** XTable表格类型 */
-export type XTableTableType = 'default' | 'btn' | 'operate' | 'slot'
+export type XTableTableType = 'default' | 'btn' | 'operate' | 'slot' | 'dict'

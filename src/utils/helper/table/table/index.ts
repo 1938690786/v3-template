@@ -1,4 +1,4 @@
-import { XTableTableDefault, XTableTableOperate, XTableTableSlot } from './class'
+import { XTableTableDefault, XTableTableDict, XTableTableOperate, XTableTableSlot } from './class'
 
 /**
  * 表格列配置
@@ -30,6 +30,45 @@ export const tableHelper = {
             others,
         )
     },
+
+    /**
+     * 字典项，根据 id 获取字典值
+     *
+     * @param {string} name 对应列的 title
+     * @param {string} prop 对应数据
+     * @param {Option[]} dict 字典
+     * @param {number | undefined} width 列的宽度，默认自适应
+     * @param {Record<string, any>} [others] 其他Table-column 属性，show：是否展示 （默认true） tips: 提示文字
+     */
+    dict(
+        name: string,
+        prop: string,
+        dict: Option[],
+        width?: number | undefined,
+        others?: {
+            show?: boolean
+            tips?: string
+            [key: string]: any
+        },
+    ) {
+        return new XTableTableDict(
+            'dict',
+            name,
+            prop,
+            dict,
+            width,
+            others,
+        )
+    },
+
+    /**
+     * 插槽项
+     *
+     * @param {string} name 对应列的 title
+     * @param {string} prop 对应slot name
+     * @param {number | undefined} width 列的宽度，默认自适应
+     * @param {Record<string, any>} [others] 其他Table-column 属性，show：是否展示 （默认true） tips: 提示文字
+     */
     slot(
         name: string,
         prop: string,

@@ -28,6 +28,7 @@ import Index from './index.vue'
         }
         .framework-content {
             flex: 1;
+            border: solid 1px red;
         }
     }
 }

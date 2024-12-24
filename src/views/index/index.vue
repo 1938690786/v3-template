@@ -1,8 +1,10 @@
 <script lang='ts' setup>
 import { ElMessage } from 'element-plus'
+import { API, roleOption } from './index'
 import { tableHelper } from '@/utils/helper/table/table'
 import { filterHelper } from '@/utils/helper/table/filters'
 
+const tableRef = ref()
 const listData = ref<any>([])
 
 const datas = reactive({
@@ -15,60 +17,6 @@ const datas = reactive({
         size: 10,
     },
 })
-function API() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                data: [{
-                    name: '张三',
-                    age: 12,
-                    sex: '男',
-                }, {
-                    name: '李四',
-                    age: 13,
-                    sex: '女',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }, {
-                    name: '王五',
-                    age: 14,
-                    sex: '男',
-                }],
-                total: 11,
-            })
-        }, 1000)
-    })
-}
 
 function getData(): Promise<any> {
     return API().then((res: any) => {
@@ -79,9 +27,20 @@ function getData(): Promise<any> {
 
 const columns = computed(() => {
     return [
-        tableHelper.default('姓名', 'name'),
-        tableHelper.default('年龄', 'age'),
-        tableHelper.default('性别', 'sex', undefined, { tips: '这是一个提示' }),
+        tableHelper.default('账号', 'account'),
+        tableHelper.dict('角色', 'role', roleOption),
+        tableHelper.default('注册时间', 'createTime'),
+        tableHelper.default('上次登录时间', 'lastLogTime'),
+        tableHelper.slot('状态', 'status'),
+        tableHelper.operate('操作', [{
+            label: '禁用',
+            handler(row: any) {
+                ElMessage({
+                    message: '禁用成功',
+                    type: 'success',
+                })
+            },
+        }]),
     ]
 })
 const filters = computed(() => {
@@ -94,27 +53,11 @@ const filters = computed(() => {
     ]
 })
 const tabs = computed(() => {
-    return [
-        {
-            name: '第一阶段',
-            value: '1',
-        },
-        {
-            name: '第二阶段',
-            value: '2',
-        },
-        {
-            name: '第三阶段',
-            value: '3',
-        },
-        {
-            name: '第四阶段',
-            value: '4',
-        },
-    ]
+    return roleOption
 })
 
-function remove() {
+function changeItemStatus(type: 0 | 1) {
+    console.log(datas.selected)
     if (datas.selected.length === 0) {
         ElMessage({
             message: '请先选择数据',
@@ -122,7 +65,11 @@ function remove() {
         })
     }
     else {
-        console.log('remove', datas.selected)
+        ElMessage({
+            message: type === 0 ? '禁用成功' : '启用成功',
+            type: 'success',
+        })
+        tableRef.value.refresh()
     }
 }
 
@@ -133,13 +80,29 @@ function created() {
 
 <template>
     <XContent>
-        <XTable v-bind="{ columns, filters, listData, tabs }" v-model="datas" :request="getData" :select-enable="true" :index-enable="true">
+        <XTable v-bind="{ columns, filters, listData, tabs }" ref="tableRef" v-model="datas" :request="getData" :select-enable="true" :index-enable="true">
             <template #test>
                 <div>这是插槽渲染的</div>
             </template>
+            <template #status>
+                <el-table-column
+                    label="状态"
+                    prop="status"
+                >
+                    <template #default="{ row }">
+                        {{
+                            row.status ? '启用' : '禁用'
+                        }}
+                    </template>
+                </el-table-column>
+            </template>
+            <!-- 表格有上角按钮 -->
             <template #handle>
-                <el-button type="danger" @click="remove">
-                    移除
+                <el-button type="danger" @click="changeItemStatus(0)">
+                    批量禁用
+                </el-button>
+                <el-button type="primary" @click="changeItemStatus(1)">
+                    批量启用
                 </el-button>
                 <el-button type="primary" @click="created">
                     创建新数据

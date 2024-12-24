@@ -3,14 +3,6 @@ import Filters from './filters/index.vue'
 import TableData from './table-data/index.vue'
 import Pagination from './pagination/index.vue'
 
-// 定义列的接口
-interface Column {
-    name: string
-    prop: string
-    width?: number
-    sort?: boolean
-    align?: 'left' | 'right' | 'center'
-}
 const props = defineProps({
     // 请求方法
     request: Function,
@@ -19,9 +11,9 @@ const props = defineProps({
     // 表格筛选项
     filters: { type: Array, default: () => [] },
     // tabs 筛选项
-    tabs: { type: Array<any>, default: () => [] },
+    tabs: { type: Array<Option>, default: () => [] },
     // 表格列
-    columns: { type: Array as PropType<Column[]>, default: () => [] },
+    columns: { type: Array<any>, default: () => [] },
     // 表格行主键
     rowKey: { type: String, default: () => 'id' },
     // 是否分页
@@ -52,6 +44,13 @@ const filtersSlot = computed(() => {
     return result
 })
 
+const tableColumnSlots = computed(() => {
+    const result = props.columns.filter((item: any) => {
+        return item.type === 'slot'
+    }).map((item: any) => item.prop)
+    return result
+})
+
 function getData() {
     if (typeof props.request === 'function') {
         try {
@@ -67,9 +66,15 @@ function getData() {
     }
 }
 
+function refresh() {
+    getData()
+}
+
 onMounted(() => {
     getData()
 })
+
+defineExpose({refresh})
 </script>
 
 <template>
@@ -89,7 +94,7 @@ onMounted(() => {
                         <el-radio-group v-if="tabs && tabs.length" v-model="model.tabData">
                             <template v-for="(item, index) of tabs" :key="index">
                                 <el-radio-button :value="item.value">
-                                    {{ item.name }}
+                                    {{ item.label }}
                                 </el-radio-button>
                             </template>
                         </el-radio-group>
@@ -98,7 +103,11 @@ onMounted(() => {
                         <slot name="handle" />
                     </div>
                 </div>
-                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model" />
+                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model">
+                    <template v-for="item of tableColumnSlots" #[item]>
+                        <slot :name="item" />
+                    </template>
+                </TableData>
             </div>
         </div>
         <div class="pagination">

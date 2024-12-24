@@ -9,6 +9,7 @@
 
 <style scoped lang='scss'>
 .x-content {
+    width: 100%;
     padding: 12px 12px 0;
     height: 100%;
     background: #f6f7fc;

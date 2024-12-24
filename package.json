@@ -17,7 +17,6 @@
         "lodash": "^4.17.21",
         "pinia": "^2.2.4",
         "pinia-plugin-persistedstate": "^4.1.1",
-        "unocss": "^0.63.4",
         "vue": "^3.4.37",
         "vue-router": "^4.4.3"
     },
