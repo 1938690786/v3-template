@@ -91,7 +91,7 @@ defineExpose({ refresh })
                 <!-- tabs与操作栏 -->
                 <div class="tabs-handle">
                     <div>
-                        <el-radio-group v-if="tabs && tabs.length" v-model="model.tabData">
+                        <el-radio-group v-if="tabs && tabs.length" v-model="model.tabData" @change="getData">
                             <template v-for="(item, index) of tabs" :key="index">
                                 <el-radio-button :value="item.value">
                                     {{ item.label }}

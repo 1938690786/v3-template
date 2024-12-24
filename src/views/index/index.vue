@@ -10,11 +10,9 @@ const listData = ref<any>([])
 const datas = reactive({
     total: 0,
     filterData: {
-        role: '',
-        account: 1,
     },
     selected: [],
-    tabData: '1',
+    tabData: '',
     pageData: {
         page: 1,
         size: 10,
