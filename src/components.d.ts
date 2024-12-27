@@ -8,10 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Filters: typeof import('./components/x-table/filters/index.vue')['default']
-    Form: typeof import('./components/x-table/filters/form.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Item: typeof import('./components/x-table/filters/item.vue')['default']
-    Pagenation: typeof import('./components/x-table/pagenation/index.vue')['default']
     Pagination: typeof import('./components/x-table/pagination/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

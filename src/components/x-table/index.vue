@@ -25,7 +25,7 @@ const props = defineProps({
 })
 
 const emits = defineEmits<{
-    (e: 'operate', row: any, index: number): void
+    (e: 'operate', label: string, row: any, index: number): void
 }>()
 
 const model: any = defineModel<{
@@ -78,8 +78,8 @@ onMounted(() => {
     getData()
 })
 
-function operateClick(row: any, index: number) {
-    emits('operate', row, index)
+function operateClick(label: string, row: any, index: number) {
+    emits('operate', label, row, index)
 }
 
 defineExpose({ refresh })
@@ -111,7 +111,7 @@ defineExpose({ refresh })
                         <slot name="handle" />
                     </div>
                 </div>
-                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model" @operate="operateClick">
+                <TableData v-bind="{ listData, columns, indexEnable, selectEnable }" v-model="model" @refresh="refresh" @operate="operateClick">
                     <template v-for="item of tableColumnSlots" #[item]>
                         <slot :name="item" />
                     </template>
@@ -141,6 +141,7 @@ defineExpose({ refresh })
         margin-bottom: 15px;
         background: #fff;
         padding: 20px;
+        overflow-x: hidden;
         .table-wrapper {
             display: flex;
             flex-direction: column;

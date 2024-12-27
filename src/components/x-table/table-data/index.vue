@@ -1,5 +1,7 @@
 <script lang='ts' setup>
-defineProps({
+import { emit } from 'node:process'
+
+const props = defineProps({
     columns: { type: Array<any>, default: () => [] },
     listData: { type: Array, default: () => [] },
     // 是否多选
@@ -9,7 +11,8 @@ defineProps({
 })
 
 const emits = defineEmits<{
-    (e: 'operate', row: any, index: number): void
+    (e: 'operate', label: string, row: any, index: number): void
+    (e: 'refresh'): void
 }>()
 
 const model: any = defineModel<{
@@ -23,8 +26,24 @@ const model: any = defineModel<{
     }
 }>()
 
+// 多选
 function selectChange(e: any) {
     model.value.selected = e
+}
+/**
+ * 排序
+ */
+function sortChange(e: any) {
+    const { prop, order } = e
+    if (order) {
+        model.value.filterData.filter = {
+            [prop]: order,
+        }
+    }
+    else {
+        delete model.value.filterData.filter
+    }
+    emits('refresh')
 }
 
 /**
@@ -77,14 +96,14 @@ function getStatusValue(option: Status[], value: string | number): {
     }
 }
 
-function operateClick(row: any, index: number) {
+function operateClick(label: string, row: any, index: number) {
     console.log(row, index)
-    emits('operate', row, index)
+    emits('operate', label, row, index)
 }
 </script>
 
 <template>
-    <el-table :data="listData" stripe height="100%" @selection-change="selectChange">
+    <el-table :data="listData" stripe height="100%" @selection-change="selectChange" @sort-change="sortChange">
         <el-table-column v-if="indexEnable" type="index" width="50" />
         <el-table-column v-if="selectEnable" type="selection" width="55" />
         <template v-for="(item, index) of columns" :key="index">

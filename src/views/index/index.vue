@@ -20,7 +20,7 @@ const datas = reactive({
 })
 
 function getData(): Promise<any> {
-    return API().then((res: any) => {
+    return API(datas.filterData).then((res: any) => {
         listData.value = res.data
         datas.total = res.total
     })
@@ -30,7 +30,7 @@ const columns = computed(() => {
     return [
         tableHelper.default('账号', 'account'),
         tableHelper.default('注册时间', 'createTime'),
-        tableHelper.default('上次登录时间', 'lastLogTime'),
+        tableHelper.default('上次登录时间', 'lastLogTime', undefined, { sortable: 'custom' }),
         tableHelper.dict('角色', 'role', roleOption),
         tableHelper.status('状态', 'status', statusOption),
         tableHelper.operate('操作', [{
@@ -59,7 +59,6 @@ const tabs = computed(() => {
 })
 
 function changeItemStatus(type: 0 | 1) {
-    console.log(datas.selected)
     if (datas.selected.length === 0) {
         ElMessage({
             message: '请先选择数据',
@@ -79,8 +78,8 @@ function created() {
     console.log('created')
 }
 
-function operateClick(row: any, index: number) {
-    console.log('operateClick', row, index)
+function operateClick(label: string, row: any, index: number) {
+    console.log('operateClick', label, row, index)
 }
 </script>
 
@@ -131,6 +130,3 @@ function operateClick(row: any, index: number) {
         </XTable>
     </XContent>
 </template>
-
-<style scoped lang='scss'>
-</style>

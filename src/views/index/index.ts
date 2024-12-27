@@ -32,7 +32,8 @@ export const statusOption: Status[] = [
     },
 ]
 
-export function API() {
+export function API(params: Record<string, any>) {
+    console.log(params)
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({

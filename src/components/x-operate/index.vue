@@ -3,7 +3,7 @@ import type { XTtableOperate } from '@/utils/helper/table/table/index'
 
 const props = defineProps<{ list: Array<XTtableOperate>, row: Record<string, any>, idx: number }>()
 const emits = defineEmits<{
-    (e: 'click', row: any, index: number): void
+    (e: 'click', label: string, row: any, index: number): void
 }>()
 
 function operateList(): any {
@@ -24,9 +24,9 @@ function operateList(): any {
     })
 }
 
-function click() {
+function click(label: string) {
     console.log(props)
-    emits('click', props.row, props.idx)
+    emits('click', label, props.row, props.idx)
 }
 </script>
 
@@ -35,7 +35,7 @@ function click() {
         v-for="(item, index) of operateList()"
         :key="index"
         type="text"
-        @click="click"
+        @click="click(item.label)"
     >
         {{ item.label }}
     </el-button>
