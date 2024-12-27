@@ -11,10 +11,12 @@ const emits = defineEmits(['search', 'reset'])
 const model = defineModel<any>({ default: {} })
 
 const filtersSlot = computed(() => {
-    const result = props.filters.filter((item: any) => {
-        return item.type === 'slot'
-    }).map((item: any) => item.code)
-    return result
+    if (!props.filters || !Array.isArray(props.filters)) {
+        return []
+    }
+    return props.filters
+        .filter((item: any) => { return item.type === 'slot' })
+        .map((item: any) => item.code)
 })
 
 // 查询

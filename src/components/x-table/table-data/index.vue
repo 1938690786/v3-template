@@ -1,7 +1,5 @@
 <script lang='ts' setup>
-import { emit } from 'node:process'
-
-const props = defineProps({
+defineProps({
     columns: { type: Array<any>, default: () => [] },
     listData: { type: Array, default: () => [] },
     // 是否多选
@@ -52,17 +50,8 @@ function sortChange(e: any) {
  * @param value 值
  * @returns label 值
  */
-function getDictValue(option: Option[], value: string | number): string | number {
-    if (option === undefined || value === undefined) {
-        return '-'
-    }
-    const index = option?.findIndex((item: Option) => item.value === value)
-    if (index > -1) {
-        return option[index].label
-    }
-    else {
-        return '-'
-    }
+function getDictValue(option: Option[] = [], value: string | number): string | number {
+    return option?.find(item => item.value === value)?.label ?? '-'
 }
 
 /**
@@ -71,29 +60,12 @@ function getDictValue(option: Option[], value: string | number): string | number
  * @param value 状态值
  * @returns title 值 type 状态
  */
-function getStatusValue(option: Status[], value: string | number): {
+function getStatusValue(option: Status[] = [], value: string | number): {
     title: string | number
     type: StatusType
 } {
-    if (value === undefined || option === undefined) {
-        return {
-            title: '-',
-            type: 'default',
-        }
-    }
-    const index = option?.findIndex((item: Option) => item.value === value)
-    if (index > -1) {
-        return {
-            title: option[index].label,
-            type: option[index].status,
-        }
-    }
-    else {
-        return {
-            title: '-',
-            type: 'default',
-        }
-    }
+    const item = option.find(item => item.value === value)
+    return item ? { title: item.label, type: item.status } : { title: '-', type: 'default' }
 }
 
 function operateClick(label: string, row: any, index: number) {
@@ -195,6 +167,3 @@ function operateClick(label: string, row: any, index: number) {
         </template>
     </el-table>
 </template>
-
-<style scoped lang='scss'>
-</style>

@@ -1,13 +1,17 @@
 <script lang="ts" setup>
-withDefaults(defineProps<{ type: 'success' | 'primary' | 'info' | 'warning' | 'danger' | 'default', title: string | number }>(), {
+import type { XStatusProps } from './types.ts'
+
+const props = withDefaults(defineProps<XStatusProps>(), {
     type: 'success',
 })
+
+const tagClass = computed(() => `tag-type-${props.type}`)
 </script>
 
 <template>
     <span class="x-status flex items-center justify-center">
-        <span class="tag-type" :class="[`tag-type-${type}`]" />
-        <span class="tag-title">{{ title }}</span>
+        <span class="tag-type" :class="[tagClass]" />
+        <span class="tag-title">{{ props.title }}</span>
     </span>
 </template>
 
