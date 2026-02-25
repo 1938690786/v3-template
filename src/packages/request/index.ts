@@ -1,6 +1,7 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { getToken } from '@/utils/storage'
 
 // 创建 Axios 实例
 const service: AxiosInstance = axios.create({
@@ -13,7 +14,7 @@ service.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
     // 在发送请求之前做些什么
     // 例如：添加 token 到请求头
-        const token = localStorage.getItem('token')
+        const token = getToken()
         if (token) {
             config.headers!.Authorization = `Bearer ${token}`
         }

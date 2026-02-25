@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 import useRouteCache from '@/config/pinia/modules/routeCache'
+import useApp from '@/config/pinia/modules/app'
+import { getToken } from '@/utils/storage'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -9,8 +11,20 @@ const router = createRouter({
 
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
-    console.log('from', from)
-    console.log('to', to)
+    const token = getToken()
+    const { signPageNames } = useApp()
+    const isSignPage = signPageNames.includes(to.name as string)
+
+    if (!token && !isSignPage) {
+        next('/login')
+        return
+    }
+
+    if (token && to.path === '/login') {
+        next('/')
+        return
+    }
+
     useRouteCache().addRoute(to)
     next()
 })

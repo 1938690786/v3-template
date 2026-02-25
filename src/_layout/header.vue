@@ -1,4 +1,12 @@
 <script lang='ts' setup>
+import { removeToken } from '@/utils/storage'
+
+const router = useRouter()
+
+function handleLogout() {
+    removeToken()
+    router.replace('/login')
+}
 </script>
 
 <template>
@@ -8,7 +16,14 @@
                 <ElementPlus />
             </el-icon>
         </div>
-        <div class="right" />
+        <div class="right">
+            <el-button type="danger" text @click="handleLogout">
+                <el-icon class="mr-4px">
+                    <SwitchButton />
+                </el-icon>
+                退出登录
+            </el-button>
+        </div>
     </div>
 </template>
 
@@ -29,6 +44,9 @@
         padding-left: 20px;
         display: flex;
         align-items: center;
+    }
+    .right {
+        padding-right: 20px;
     }
 }
 </style>
