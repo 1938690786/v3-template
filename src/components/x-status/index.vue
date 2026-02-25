@@ -9,7 +9,7 @@ const tagClass = computed(() => `tag-type-${props.type}`)
 </script>
 
 <template>
-    <span class="x-status flex items-center justify-center">
+    <span class="x-status flex items-center">
         <span class="tag-type" :class="[tagClass]" />
         <span class="tag-title">{{ props.title }}</span>
     </span>
