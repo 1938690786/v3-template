@@ -4,9 +4,9 @@
  * 演示所有筛选器类型、表格列类型、插槽用法和交互功能
  */
 import { ElMessage } from 'element-plus'
-import { API, departmentOption, roleOption, statusOption } from './index'
-import { tableHelper } from '@/utils/helper/table/table'
 import { filterHelper } from '@/utils/helper/table/filters'
+import { tableHelper } from '@/utils/helper/table/table'
+import { API, departmentOption, roleOption, statusOption } from './index'
 
 const tableRef = ref()
 const listData = ref<any>([])
@@ -15,7 +15,7 @@ const datas = reactive({
     total: 0,
     filterData: {} as Record<string, any>,
     selected: [] as any[],
-    tabData: ''  ,
+    tabData: '',
     pageData: {
         page: 1,
         size: 10,
