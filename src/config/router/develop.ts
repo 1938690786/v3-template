@@ -12,7 +12,7 @@ const routers: RouteConfig[] = [
         children: [
             {
                 path: '/develop',
-                name: 'develop',
+                name: 'developHome',
                 meta: {
                     title: '开发者工具',
                 },
