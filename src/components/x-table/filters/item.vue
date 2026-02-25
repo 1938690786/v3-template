@@ -26,9 +26,9 @@ const model = defineModel()
             <el-select
                 v-else-if="item.type === 'select'"
                 v-model="model"
+                class="w-full"
                 clearable
-                v-bind="item.others" :option="item.options"
-                style="width: 240px"
+                v-bind="item.others"
             >
                 <el-option v-for="option in item.options" :key="option.value" :label="option.label" :value="option.value" />
             </el-select>
@@ -36,7 +36,7 @@ const model = defineModel()
             <el-date-picker
                 v-else-if="item.type === 'daterange'"
                 v-model="model"
-                class="date-range"
+                class="w-full"
                 type="daterange"
                 range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
                 format="YYYY-MM-DD"
@@ -48,6 +48,7 @@ const model = defineModel()
             <el-date-picker
                 v-else-if="item.type === 'date'"
                 v-model="model"
+                class="w-full"
                 type="date"
                 :placeholder="item.placeholder || '请选择日期'"
                 format="YYYY-MM-DD"
@@ -59,7 +60,7 @@ const model = defineModel()
             <el-date-picker
                 v-else-if="item.type === 'datetimerange'"
                 v-model="model"
-                class="datetime-range"
+                class="w-full"
                 type="datetimerange"
                 range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间"
                 format="YYYY-MM-DD HH:mm:ss"
@@ -74,6 +75,7 @@ const model = defineModel()
                 controls-position="right"
                 :placeholder="item.placeholder || '请输入'"
                 v-bind="item.others"
+                class="w-full"
             />
             <!-- 级联选择器 -->
             <el-cascader v-else-if="item.type === 'cascader'" v-model="model" :options="item.options" clearable v-bind="item.others" />
@@ -102,11 +104,17 @@ const model = defineModel()
     }
     .item-value {
         flex: 1;
-        .date-range {
-            width: 260px !important;
+        :deep(.el-date-editor.el-input) {
+            width: 100%;
         }
-        .datetime-range {
-            width: 380px !important;
+        :deep(.el-range-editor.el-input__wrapper) {
+            width: 100%;
+        }
+        :deep(.el-cascader) {
+            width: 100%;
+        }
+        :deep(.el-input-number) {
+            width: 100%;
         }
     }
 }

@@ -1,8 +1,12 @@
 <script lang='ts' setup>
+/**
+ * x-table 筛选栏组件
+ * 使用 el-row/el-col 栅格布局排列筛选项，支持通过 span 控制列宽
+ */
 import FilterItem from './item.vue'
 
 const props = defineProps({
-    // 表格筛选项
+    /** 筛选项配置列表 */
     filters: { type: Array<any>, default: () => [] },
 })
 
@@ -19,12 +23,12 @@ const filtersSlot = computed(() => {
         .map((item: any) => item.code)
 })
 
-// 查询
+/** 查询 */
 function search() {
     emits('search')
 }
 
-// 重置
+/** 重置 */
 function reset() {
     model.value = {}
     emits('search')
@@ -33,24 +37,28 @@ function reset() {
 
 <template>
     <div class="x-table-filters">
-        <div class="filter-container">
-            <!-- <el-row :gutter="20">
-                <el-col  :lg="6" :span="8"> -->
-            <template v-for="item of filters" :key="item">
+        <el-row :gutter="20">
+            <el-col
+                v-for="item of filters"
+                :key="item.code"
+                :lg="6"
+                :span="8"
+            >
                 <FilterItem v-if="item.show" v-model="model[item.code]" :item="item">
                     <template v-for="slot of filtersSlot" #[slot]>
                         <slot :name="slot" />
                     </template>
                 </FilterItem>
-            </template>
-            <el-button class="btn" type="primary" style="margin-left: 12px" @click="search">
+            </el-col>
+        </el-row>
+        <!-- 查询/重置按钮 -->
+        <div class="filter-actions">
+            <el-button type="primary" @click="search">
                 查询
             </el-button>
-            <el-button class="btn" @click="reset">
+            <el-button @click="reset">
                 重置
             </el-button>
-            <!-- </el-col>
-            </el-row> -->
         </div>
     </div>
 </template>
@@ -59,18 +67,14 @@ function reset() {
 .x-table-filters {
     width: 100%;
     background: #fff;
-    padding: 10px;
+    padding: 20px 10px 0;
     box-sizing: border-box;
     overflow: hidden;
     margin-bottom: 15px;
-    .filter-container {
-        width: 100%;
+    .filter-actions {
         display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .btn {
-        margin-bottom: 20px;
+        justify-content: flex-end;
+        padding: 0 10px 16px;
     }
 }
 </style>

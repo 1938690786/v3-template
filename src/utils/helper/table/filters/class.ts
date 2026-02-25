@@ -27,6 +27,8 @@ export class XTableFilterInput {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     /** 占位内容 */
     placeholder?: string
     /** 其他element-plus的input参数 */
@@ -38,11 +40,13 @@ export class XTableFilterInput {
         show?: boolean,
         placeholder?: string,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span
         this.placeholder = placeholder || '请输入'
         this.others = others
     }
@@ -63,6 +67,8 @@ export class XTableFilterSelect {
     options: DictionaryItem[]
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     /** 占位内容 */
     placeholder?: string
     /** 其他element-plus的select参数 */
@@ -75,12 +81,14 @@ export class XTableFilterSelect {
         show?: boolean,
         placeholder?: string,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.options = options
         this.show = show
+        this.span = span
         this.placeholder = placeholder || '请输入'
         this.others = others
     }
@@ -99,6 +107,8 @@ export class XTableFilterDateRange {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度），默认2 */
+    span?: number
     /** 其他element-plus的date-picker参数 */
     others?: Record<string, any>
     constructor(
@@ -107,11 +117,13 @@ export class XTableFilterDateRange {
         code: string,
         show?: boolean,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span ?? 2
         this.others = others
     }
 }
@@ -129,6 +141,8 @@ export class XTableFilterDate {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     /** 占位内容 */
     placeholder?: string
     /** 其他element-plus的date-picker参数 */
@@ -140,11 +154,13 @@ export class XTableFilterDate {
         show?: boolean,
         placeholder?: string,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span
         this.placeholder = placeholder || '请选择日期'
         this.others = others
     }
@@ -163,6 +179,8 @@ export class XTableFilterDatetimeRange {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度），默认2 */
+    span?: number
     /** 其他element-plus的date-picker参数 */
     others?: Record<string, any>
     constructor(
@@ -171,11 +189,13 @@ export class XTableFilterDatetimeRange {
         code: string,
         show?: boolean,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span ?? 2
         this.others = others
     }
 }
@@ -193,6 +213,8 @@ export class XTableFilterNumber {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     /** 占位内容 */
     placeholder?: string
     /** 其他element-plus的input-number参数 */
@@ -204,11 +226,13 @@ export class XTableFilterNumber {
         show?: boolean,
         placeholder?: string,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span
         this.placeholder = placeholder || '请输入'
         this.others = others
     }
@@ -227,6 +251,8 @@ export class XTableFilterCascader {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     /** 字典项（用于级联选择） */
     options: DictionaryItem[]
     /** 其他element-plus的cascader参数 */
@@ -238,12 +264,14 @@ export class XTableFilterCascader {
         options: DictionaryItem[],
         show?: boolean,
         others?: Record<string, any>,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.options = options
         this.show = show
+        this.span = span
         this.others = others
     }
 }
@@ -261,16 +289,20 @@ export class XTableFilterSlot {
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
+    /** 栅格列数倍数（1=默认宽度，2=双倍宽度） */
+    span?: number
     constructor(
         type: XTableFilterType,
         name: string,
         code: string,
         show?: boolean,
+        span?: number,
     ) {
         this.type = type
         this.name = name
         this.code = code
         this.show = show
+        this.span = span
     }
 }
 
