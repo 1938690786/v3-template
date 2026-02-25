@@ -9,28 +9,23 @@ const router = createRouter({
     routes,
 })
 
-// 路由前置守卫
-router.beforeEach(async (to, from, next) => {
+// 路由前置守卫（vue-router 5 使用 return 替代 next）
+router.beforeEach(async (to) => {
     const token = getToken()
     const { signPageNames } = useApp()
     const isSignPage = signPageNames.includes(to.name as string)
 
+    // 未登录且非签名页面 → 跳转登录
     if (!token && !isSignPage) {
-        next('/login')
-        return
+        return '/login'
     }
 
+    // 已登录访问登录页 → 跳转首页
     if (token && to.path === '/login') {
-        next('/')
-        return
+        return '/'
     }
 
     useRouteCache().addRoute(to)
-    next()
-})
-
-router.afterEach((to) => {
-    console.log(to)
 })
 
 export const SIDER_ROUTES = (() => {

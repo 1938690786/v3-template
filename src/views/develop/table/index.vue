@@ -15,7 +15,7 @@ const datas = reactive({
     total: 0,
     filterData: {} as Record<string, any>,
     selected: [] as any[],
-    tabData: '',
+    tabData: ''  ,
     pageData: {
         page: 1,
         size: 10,

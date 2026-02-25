@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -v && pnpm -v)",
+      "Bash(npm view pinia-plugin-persistedstate versions --json 2>&1 | tail -5)",
+      "Bash(npm view pinia-plugin-persistedstate@latest peerDependencies --json 2>&1)",
+      "Bash(npm view vite-plugin-svg-icons peerDependencies --json 2>&1)",
+      "Bash(npm view vue-router@5 peerDependencies --json 2>&1)"
+    ]
+  }
+}

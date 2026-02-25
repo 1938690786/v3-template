@@ -1,4 +1,4 @@
-import path, { resolve } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
@@ -10,8 +10,8 @@ export default defineConfig({
     base: './',
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
-            'types': path.resolve(__dirname, 'types'),
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            'types': fileURLToPath(new URL('./types', import.meta.url)),
         },
     },
     plugins: [
@@ -27,7 +27,7 @@ export default defineConfig({
         }),
         // svg-icon
         createSvgIconsPlugin({
-            iconDirs: [resolve(__dirname, 'src/assets/svgs')],
+            iconDirs: [fileURLToPath(new URL('./src/assets/svgs', import.meta.url))],
             symbolId: 'icon-[dir]-[name]',
         }),
     ],

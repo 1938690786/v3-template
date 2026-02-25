@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import framework from './_layout/framework.vue'
 import useApp from '@/config/pinia/modules/app'
+import framework from './_layout/framework.vue'
 
 const route = useRoute()
 const signPageNames = useApp().signPageNames
