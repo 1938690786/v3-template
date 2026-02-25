@@ -7,9 +7,16 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Filters: typeof import('./components/x-table/filters/index.vue')['default']
+    Item: typeof import('./components/x-table/filters/item.vue')['default']
+    Pagination: typeof import('./components/x-table/pagination/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    VanButton: typeof import('vant/es')['Button']
+    TableData: typeof import('./components/x-table/table-data/index.vue')['default']
+    XContent: typeof import('./components/x-content/index.vue')['default']
+    XOperate: typeof import('./components/x-operate/index.vue')['default']
+    XStatus: typeof import('./components/x-status/index.vue')['default']
+    XSvg: typeof import('./components/x-svg/index.vue')['default']
+    XTable: typeof import('./components/x-table/index.vue')['default']
   }
 }
