@@ -12,7 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Filters: typeof import('./components/x-table/filters/index.vue')['default']
-    Item: typeof import('./components/x-table/filters/item.vue')['default']
+    Item: typeof import('./components/x-form/item.vue')['default']
     Pagination: typeof import('./components/x-table/pagination/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
