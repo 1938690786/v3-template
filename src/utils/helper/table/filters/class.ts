@@ -1,27 +1,26 @@
-export type FrameListViewFilterType =
+/**
+ * x-table 筛选器类型与数据模型
+ * 定义所有筛选器的类型枚举和对应的数据类，用于 x-table 组件的筛选栏配置
+ */
+
+/** 筛选器类型枚举 */
+export type XTableFilterType =
     | 'input'
     | 'select'
     | 'daterange'
-    | 'mobile'
     | 'date'
-    | 'date-week'
-    | 'date-rang-week'
-    | 'datetime-range'
+    | 'datetimerange'
+    | 'number'
     | 'cascader'
-    | 'int'
-    | 'input-range'
-    | 'int-range'
-    | 'address'
-    | 'select-list'
     | 'slot'
-    | 'interval-input'
 
 /**
- * input生成类
+ * 输入框筛选器
+ * @example filterHelper.input('账号', 'account')
  */
 export class XTableFilterInput {
     /** 类型 */
-    type: FrameListViewFilterType
+    type: XTableFilterType
     /** 标签名 */
     name: string
     /** 对应数据的key */
@@ -33,7 +32,7 @@ export class XTableFilterInput {
     /** 其他element-plus的input参数 */
     others?: Record<string, any>
     constructor(
-        type: FrameListViewFilterType,
+        type: XTableFilterType,
         name: string,
         code: string,
         show?: boolean,
@@ -50,11 +49,12 @@ export class XTableFilterInput {
 }
 
 /**
- * select生成类
+ * 下拉选择筛选器
+ * @example filterHelper.select('角色', 'role', roleOptions)
  */
 export class XTableFilterSelect {
     /** 类型 */
-    type: FrameListViewFilterType
+    type: XTableFilterType
     /** 标签名 */
     name: string
     /** 对应数据的key */
@@ -68,7 +68,7 @@ export class XTableFilterSelect {
     /** 其他element-plus的select参数 */
     others?: Record<string, any>
     constructor(
-        type: FrameListViewFilterType,
+        type: XTableFilterType,
         name: string,
         code: string,
         options: DictionaryItem[],
@@ -87,21 +87,22 @@ export class XTableFilterSelect {
 }
 
 /**
- * daterange生成类
+ * 日期范围筛选器
+ * @example filterHelper.dateRange('注册时间', 'createTime')
  */
 export class XTableFilterDateRange {
     /** 类型 */
-    type: FrameListViewFilterType
+    type: XTableFilterType
     /** 标签名 */
     name: string
     /** 对应数据的key */
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
-    /** 字典项（用于单选、多选等） */
+    /** 其他element-plus的date-picker参数 */
     others?: Record<string, any>
     constructor(
-        type: FrameListViewFilterType,
+        type: XTableFilterType,
         name: string,
         code: string,
         show?: boolean,
@@ -116,23 +117,122 @@ export class XTableFilterDateRange {
 }
 
 /**
- * cascader生成类
+ * 单日期筛选器
+ * @example filterHelper.date('生日', 'birthday')
  */
-export class XTableFilterCascader {
+export class XTableFilterDate {
     /** 类型 */
-    type: FrameListViewFilterType
+    type: XTableFilterType
     /** 标签名 */
     name: string
     /** 对应数据的key */
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
-    /** 字典项（用于单选、多选等） */
+    /** 占位内容 */
+    placeholder?: string
+    /** 其他element-plus的date-picker参数 */
+    others?: Record<string, any>
+    constructor(
+        type: XTableFilterType,
+        name: string,
+        code: string,
+        show?: boolean,
+        placeholder?: string,
+        others?: Record<string, any>,
+    ) {
+        this.type = type
+        this.name = name
+        this.code = code
+        this.show = show
+        this.placeholder = placeholder || '请选择日期'
+        this.others = others
+    }
+}
+
+/**
+ * 日期时间范围筛选器
+ * @example filterHelper.datetimeRange('操作时间', 'operateTime')
+ */
+export class XTableFilterDatetimeRange {
+    /** 类型 */
+    type: XTableFilterType
+    /** 标签名 */
+    name: string
+    /** 对应数据的key */
+    code: string
+    /** 是否展示（仅在===false时不展示） */
+    show?: boolean
+    /** 其他element-plus的date-picker参数 */
+    others?: Record<string, any>
+    constructor(
+        type: XTableFilterType,
+        name: string,
+        code: string,
+        show?: boolean,
+        others?: Record<string, any>,
+    ) {
+        this.type = type
+        this.name = name
+        this.code = code
+        this.show = show
+        this.others = others
+    }
+}
+
+/**
+ * 数字输入框筛选器
+ * @example filterHelper.number('年龄', 'age')
+ */
+export class XTableFilterNumber {
+    /** 类型 */
+    type: XTableFilterType
+    /** 标签名 */
+    name: string
+    /** 对应数据的key */
+    code: string
+    /** 是否展示（仅在===false时不展示） */
+    show?: boolean
+    /** 占位内容 */
+    placeholder?: string
+    /** 其他element-plus的input-number参数 */
+    others?: Record<string, any>
+    constructor(
+        type: XTableFilterType,
+        name: string,
+        code: string,
+        show?: boolean,
+        placeholder?: string,
+        others?: Record<string, any>,
+    ) {
+        this.type = type
+        this.name = name
+        this.code = code
+        this.show = show
+        this.placeholder = placeholder || '请输入'
+        this.others = others
+    }
+}
+
+/**
+ * 级联选择筛选器
+ * @example filterHelper.cascader('地区', 'area', areaOptions)
+ */
+export class XTableFilterCascader {
+    /** 类型 */
+    type: XTableFilterType
+    /** 标签名 */
+    name: string
+    /** 对应数据的key */
+    code: string
+    /** 是否展示（仅在===false时不展示） */
+    show?: boolean
+    /** 字典项（用于级联选择） */
     options: DictionaryItem[]
     /** 其他element-plus的cascader参数 */
     others?: Record<string, any>
     constructor(
-        type: FrameListViewFilterType,
+        type: XTableFilterType,
         name: string,
         code: string,
         options: DictionaryItem[],
@@ -149,19 +249,20 @@ export class XTableFilterCascader {
 }
 
 /**
- * slot生成类
+ * 插槽筛选器（自定义内容）
+ * @example filterHelper.slot('自定义', 'custom')
  */
 export class XTableFilterSlot {
     /** 类型 */
-    type: FrameListViewFilterType
+    type: XTableFilterType
     /** 标签名 */
     name: string
-    /** 对应数据的key */
+    /** 对应数据的key（同时作为插槽名） */
     code: string
     /** 是否展示（仅在===false时不展示） */
     show?: boolean
     constructor(
-        type: FrameListViewFilterType,
+        type: XTableFilterType,
         name: string,
         code: string,
         show?: boolean,
@@ -173,6 +274,7 @@ export class XTableFilterSlot {
     }
 }
 
+/** 字典数据项 */
 export class DictionaryItem {
     value: number | string
     label: number | string

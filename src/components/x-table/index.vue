@@ -1,26 +1,30 @@
 <script lang='ts' setup>
+/**
+ * x-table 核心表格组件
+ * 集成筛选栏、数据表格、分页器，支持 tabs 切换、多选、排序等功能
+ */
 import Filters from './filters/index.vue'
 import TableData from './table-data/index.vue'
 import Pagination from './pagination/index.vue'
 
 const props = defineProps({
-    // 请求方法
+    /** 数据请求方法，返回 Promise */
     request: Function,
-    // 表格数据
+    /** 表格数据 */
     listData: { type: Array, default: () => [] },
-    // 表格筛选项
+    /** 筛选项配置列表 */
     filters: { type: Array, default: () => [] },
-    // tabs 筛选项
+    /** tabs 标签页配置 */
     tabs: { type: Array<Option>, default: () => [] },
-    // 表格列
+    /** 表格列配置 */
     columns: { type: Array<any>, default: () => [] },
-    // 表格行主键
+    /** 表格行主键 */
     rowKey: { type: String, default: () => 'id' },
-    // 是否分页
+    /** 是否启用分页 */
     pagination: { type: Boolean, default: true },
-    // 是否多选
+    /** 是否启用多选 */
     selectEnable: { type: Boolean, default: false },
-    // 是否显示序号
+    /** 是否显示序号列 */
     indexEnable: { type: Boolean, default: false },
 })
 
@@ -64,8 +68,7 @@ function getData() {
             })
         }
         catch (err) {
-            console.log('repuset error====>', err)
-            console.error('the bind value request must be "false" or a function returns Promise')
+            console.error('请求错误:', err)
         }
     }
 }
@@ -87,8 +90,9 @@ defineExpose({ refresh })
 
 <template>
     <div class="x-table">
-        <div class="filters">
-            <Filters v-if="filters && filters.length" v-model="model.filterData" :filters="filters" @search="getData">
+        <!-- 筛选栏：仅在有筛选项时渲染 -->
+        <div v-if="filters && filters.length" class="filters">
+            <Filters v-model="model.filterData" :filters="filters" @search="getData">
                 <template v-for="item of filtersSlot" #[item]>
                     <slot :name="item" />
                 </template>
@@ -118,8 +122,9 @@ defineExpose({ refresh })
                 </TableData>
             </div>
         </div>
-        <div class="pagination">
-            <Pagination v-if="pagination" v-model="model" @change="getData">
+        <!-- 分页器：仅在启用分页时渲染 -->
+        <div v-if="pagination" class="pagination">
+            <Pagination v-model="model" @change="getData">
                 <template #footer>
                     <slot name="footer" />
                 </template>

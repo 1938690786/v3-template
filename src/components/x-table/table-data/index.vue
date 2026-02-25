@@ -1,10 +1,16 @@
 <script lang='ts' setup>
+/**
+ * x-table 数据表格子组件
+ * 负责渲染表格列（默认列、字典列、状态列、插槽列、操作列）
+ */
 defineProps({
+    /** 表格列配置 */
     columns: { type: Array<any>, default: () => [] },
+    /** 表格数据 */
     listData: { type: Array, default: () => [] },
-    // 是否多选
+    /** 是否多选 */
     selectEnable: { type: Boolean, default: false },
-    // 是否显示序号
+    /** 是否显示序号 */
     indexEnable: { type: Boolean, default: false },
 })
 
@@ -69,7 +75,6 @@ function getStatusValue(option: Status[] = [], value: string | number): {
 }
 
 function operateClick(label: string, row: any, index: number) {
-    console.log(row, index)
     emits('operate', label, row, index)
 }
 </script>

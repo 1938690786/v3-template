@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import type { FormInstance, FormRules } from 'element-plus'
-import { removeToken } from '@/utils/storage'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { removeToken } from '@/utils/storage'
 
 const router = useRouter()
 
@@ -113,8 +113,12 @@ function handleLogout() {
             </el-form-item>
         </el-form>
         <template #footer>
-            <el-button @click="closePasswordDialog">取 消</el-button>
-            <el-button type="primary" @click="submitPassword">确 定</el-button>
+            <el-button @click="closePasswordDialog">
+                取 消
+            </el-button>
+            <el-button type="primary" @click="submitPassword">
+                确 定
+            </el-button>
         </template>
     </el-dialog>
 </template>
