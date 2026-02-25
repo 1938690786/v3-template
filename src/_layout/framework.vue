@@ -28,7 +28,8 @@ import Index from './index.vue'
         }
         .framework-content {
             flex: 1;
-            border: solid 1px red;
+            min-width: 0;
+            overflow: auto;
         }
     }
 }
